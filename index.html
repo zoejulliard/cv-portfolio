@@ -102,6 +102,30 @@
             transform: translateX(-2px);
         }
 
+        /* BOUTON SWITCH LANGUE */
+        .lang-switch-btn {
+            background: var(--accent-cyan);
+            color: var(--tse-dark);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+        }
+
+        .lang-switch-btn:hover {
+            transform: scale(1.05);
+            background: white;
+            color: var(--tse-blue);
+        }
+
         /* NAVIGATION BAR PRINCIPALE */
         .nav-bar {
             background: white;
@@ -312,12 +336,15 @@
 
             <div class="header-left">
                 <h1>Zoé Julliard--Bonnouvriée</h1>
-                <p>Master 2 Data Science for Social Sciences (Voie Internationale) • TSE</p>
-                <div class="badge-alt">Recherche Stage de Fin d'Études Data Science & Intelligence Artificielle (Avril 2027)</div>
+                <p id="header-subtitle">Master 2 Data Science for Social Sciences (Voie Internationale) • TSE</p>
+                <div class="badge-alt" id="header-badge">Recherche Stage de Fin d'Études Data Science & Intelligence Artificielle (Avril 2027)</div>
             </div>
         </div>
 
         <div class="header-actions">
+            <button class="lang-switch-btn" onclick="toggleLanguage()">
+                <span id="lang-btn-text">English Version</span>
+            </button>
             <a href="https://www.linkedin.com/in/zo%C3%A9julliard/" target="_blank" class="btn-link contact-btn">
                 LinkedIn Profile
             </a>
@@ -327,20 +354,20 @@
             <a href="tel:+33782509209" class="btn-link contact-btn">
                 +33 7 82 50 92 09
             </a>
-            <a href="CV_Zoe_Julliard_Bonnouvriee_M2.pdf" download class="contact-btn" style="background: var(--accent-cyan); color: var(--tse-dark); border-color: var(--accent-cyan); font-weight: 700;">
-                Télécharger CV (PDF)
+            <a id="cv-download-link" href="CV_Zoe_Julliard_Bonnouvriee_FR.pdf" download class="contact-btn" style="background: var(--accent-cyan); color: var(--tse-dark); border-color: var(--accent-cyan); font-weight: 700;">
+                <span id="cv-download-btn">Télécharger CV (PDF)</span>
             </a>
         </div>
     </header>
 
     <!-- NAVIGATION TABS -->
     <div class="nav-bar">
-        <button class="tab-btn active" onclick="switchTab('tab-accueil', this)">Accueil & Synthèse</button>
-        <button class="tab-btn" onclick="switchTab('tab-formation', this)">Formations & Diplômes</button>
-        <button class="tab-btn" onclick="switchTab('tab-competences', this)">Compétences & Outils</button>
-        <button class="tab-btn" onclick="switchTab('tab-projets', this)">Projets Data Science</button>
-        <button class="tab-btn" onclick="switchTab('tab-experiences', this)">Expériences Pros</button>
-        <button class="tab-btn" onclick="switchTab('tab-interets', this)">Centres d'Intérêt</button>
+        <button class="tab-btn active" id="tab-btn-accueil" onclick="switchTab('tab-accueil', this)">Accueil & Synthèse</button>
+        <button class="tab-btn" id="tab-btn-formation" onclick="switchTab('tab-formation', this)">Formations & Diplômes</button>
+        <button class="tab-btn" id="tab-btn-competences" onclick="switchTab('tab-competences', this)">Compétences & Outils</button>
+        <button class="tab-btn" id="tab-btn-projets" onclick="switchTab('tab-projets', this)">Projets Data Science</button>
+        <button class="tab-btn" id="tab-btn-experiences" onclick="switchTab('tab-experiences', this)">Expériences Pros</button>
+        <button class="tab-btn" id="tab-btn-interets" onclick="switchTab('tab-interets', this)">Centres d'Intérêt</button>
     </div>
 
     <div class="container">
@@ -349,22 +376,22 @@
         <div id="tab-accueil" class="tab-content active">
             <div class="grid-3" style="margin-bottom: 25px;">
                 <div class="kpi-box">
-                    <div class="kpi-val">TSE • M2 DSSS</div>
-                    <div class="kpi-lbl">Double Licence Éco-Maths & M1 Data Science Validé</div>
+                    <div class="kpi-val" id="kpi1-val">TSE • M2 DSSS</div>
+                    <div class="kpi-lbl" id="kpi1-lbl">Double Licence Éco-Maths & M1 Data Science Validé</div>
                 </div>
                 <div class="kpi-box" style="border-left-color: var(--accent-blue);">
-                    <div class="kpi-val" style="color: var(--accent-blue);">IA Agentique & LLM</div>
-                    <div class="kpi-lbl">Stage AVISIA • MCP & Dataiku</div>
+                    <div class="kpi-val" style="color: var(--accent-blue);" id="kpi2-val">IA Agentique & LLM</div>
+                    <div class="kpi-lbl" id="kpi2-lbl">Stage AVISIA • MCP & Dataiku</div>
                 </div>
                 <div class="kpi-box">
-                    <div class="kpi-val">Python / R</div>
-                    <div class="kpi-lbl">Computer Vision & Deep Learning</div>
+                    <div class="kpi-val" id="kpi3-val">Python / R</div>
+                    <div class="kpi-lbl" id="kpi3-lbl">Computer Vision & Deep Learning</div>
                 </div>
             </div>
 
             <div class="card">
-                <h3>À propos & Objectif Professionnel</h3>
-                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+                <h3 id="about-title">À propos & Objectif Professionnel</h3>
+                <p style="font-size: 14px; color: var(--text-muted); line-height: 1.7;" id="about-text">
                     Je recherche un <b>stage de fin d'études en Data Science & Intelligence Artificielle (6 mois) à partir d'avril 2027</b>. Fortement ancrée dans une double culture <b>mathématique et data science</b> développée à la <b>Toulouse School of Economics (TSE)</b>, je conçois des solutions algorithmiques performantes appliquées aux systèmes complexes. Particulièrement attirée par l'ingénierie des données et la modélisation avancée (<b>IA Agentique, Computer Vision, Séries Temporelles, LLM</b>), je souhaite mettre ces compétences au service de projets d'innovation dans les secteurs industriels ou bancaires.
                 </p>
             </div>
@@ -373,44 +400,47 @@
         <!-- 2. ONGLET : FORMATIONS & DIPLÔMES -->
         <div id="tab-formation" class="tab-content">
             <div class="card">
-                <h3>Formations & Diplômes</h3>
+                <h3 id="edu-title">Formations & Diplômes</h3>
                 
                 <div class="timeline-item">
-                    <h4 style="font-size: 15px; color: var(--tse-blue);">Master 2 Data Science for Social Sciences - International Track</h4>
-                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;">2026 - 2027 | Toulouse School of Economics, Université Toulouse Capitole 1</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+                    <h4 style="font-size: 15px; color: var(--tse-blue);" id="edu1-degree">Master 2 Data Science for Social Sciences - International Track</h4>
+                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;" id="edu1-sub">2026 - 2027 | Toulouse School of Economics, Université Toulouse Capitole 1</p>
+                    <p style="font-size: 13px; color: #7C3AED; font-weight: 600; margin-top: 4px;" id="edu-aniti">
+                        Lauréate de la bourse d'excellence ANITI (Artificial and Natural Intelligence Toulouse Institute)
+                    </p>                    
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;" id="edu1-desc">
                         <b>Parcours M2 :</b> Spécialisation en modélisation avancée, IA, deep learning et grands volumes de données.
                     </p>
                 </div>
 
                 <div class="timeline-item">
-                    <h4 style="font-size: 15px; color: var(--tse-blue);">Master 1 Data Science for Social Sciences - International Track</h4>
-                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;">2025 - 2026 | Toulouse School of Economics, Université Toulouse Capitole 1 | Mention Très Bien</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+                    <h4 style="font-size: 15px; color: var(--tse-blue);" id="edu2-degree">Master 1 Data Science for Social Sciences - International Track</h4>
+                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;" id="edu2-sub">2025 - 2026 | Toulouse School of Economics, Université Toulouse Capitole 1 | Mention Très Bien</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;" id="edu2-desc">
                         <b>Cours :</b> Python, R, Économétrie, Statistiques, Machine Learning, Time Series, Finance.
                     </p>
                 </div>
 
                 <div class="timeline-item">
-                    <h4 style="font-size: 15px; color: var(--tse-blue);">Année d'échange universitaire</h4>
-                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;">2024 - 2025 | Université d'Oslo (Norvège)</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+                    <h4 style="font-size: 15px; color: var(--tse-blue);" id="edu3-degree">Année d'échange universitaire</h4>
+                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;" id="edu3-sub">2024 - 2025 | Université d'Oslo (Norvège)</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;" id="edu3-desc">
                         <b>Cours :</b> R, Data Science, Time Series, Économétrie, Corporate Finance.
                     </p>
                 </div>
 
                 <div class="timeline-item">
-                    <h4 style="font-size: 15px; color: var(--tse-blue);">Double Licence Économie et Mathématiques</h4>
-                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;">2021 - 2024 | Toulouse School of Economics, Université Toulouse Capitole 1</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+                    <h4 style="font-size: 15px; color: var(--tse-blue);" id="edu4-degree">Double Licence Économie et Mathématiques</h4>
+                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;" id="edu4-sub">2021 - 2024 | Toulouse School of Economics, Université Toulouse Capitole 1</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;" id="edu4-desc">
                         Formation bidisciplinaire exigeante en fondements mathématiques, statistiques et théorie économique.
                     </p>
                 </div>
 
                 <div class="timeline-item">
-                    <h4 style="font-size: 15px; color: var(--tse-blue);">Baccalauréat </h4>
-                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;">2020 - 2021 | Lycée de Seilh</p>
-                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;">
+                    <h4 style="font-size: 15px; color: var(--tse-blue);" id="edu5-degree">Baccalauréat </h4>
+                    <p style="font-size: 12px; color: var(--accent-blue); font-weight: 600;" id="edu5-sub">2020 - 2021 | Lycée de Seilh</p>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-top: 6px;" id="edu5-desc">
                         Mention Très Bien • Spécialité Mathématiques & Physiques-Chimie Option Mathématiques Expertes
                     </p>
                 </div>
@@ -421,27 +451,27 @@
         <div id="tab-competences" class="tab-content">
             <div class="grid-2">
                 <div class="card">
-                    <h3>Compétences Techniques & Langues</h3>
+                    <h3 id="skills-title">Compétences Techniques & Langues</h3>
                     
                     <div style="margin-bottom: 15px;">
-                        <b style="font-size: 13px;">Langages de programmation :</b><br>
-                        <span class="tag tag-blue">Python (avancé)</span>
-                        <span class="tag tag-blue">R (avancé)</span>
-                        <span class="tag tag-blue">SQL (intermédiaire)</span>
-                        <span class="tag tag-blue">SAS (notions)</span>
+                        <b style="font-size: 13px;" id="skills-cat1">Langages de programmation :</b><br>
+                        <span class="tag tag-blue" id="tag-p1">Python (avancé)</span>
+                        <span class="tag tag-blue" id="tag-p2">R (avancé)</span>
+                        <span class="tag tag-blue" id="tag-p3">SQL (intermédiaire)</span>
+                        <span class="tag tag-blue" id="tag-p4">SAS (notions)</span>
                     </div>
 
                     <div style="margin-bottom: 15px;">
-                        <b style="font-size: 13px;">IA & Machine Learning :</b><br>
+                        <b style="font-size: 13px;" id="skills-cat2">IA & Machine Learning :</b><br>
                         <span class="tag">Computer Vision (U-Net)</span>
-                        <span class="tag">IA Agentique</span>
-                        <span class="tag">Séries Temporelles (ARIMA, ADL)</span>
+                        <span class="tag" id="tag-ml2">IA Agentique</span>
+                        <span class="tag" id="tag-ml3">Séries Temporelles (ARIMA, ADL)</span>
                         <span class="tag">Random Forest / XGBoost</span>
-                        <span class="tag">Économétrie</span>
+                        <span class="tag" id="tag-ml5">Économétrie</span>
                     </div>
 
                     <div style="margin-bottom: 15px;">
-                        <b style="font-size: 13px;">Outils, MLOps & Frameworks :</b><br>
+                        <b style="font-size: 13px;" id="skills-cat3">Outils, MLOps & Frameworks :</b><br>
                         <span class="tag">PyTorch</span>
                         <span class="tag">FastAPI</span>
                         <span class="tag">Model Context Protocol (MCP)</span>
@@ -452,17 +482,17 @@
                     </div>
 
                     <div>
-                        <b style="font-size: 13px;">Langues :</b>
+                        <b style="font-size: 13px;" id="skills-cat4">Langues :</b>
                         <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; margin-top: 4px;">
-                            <li><b>Français :</b> Langue maternelle (C2)</li>
-                            <li><b>Anglais :</b> Courant (C1 - TOEFL 99/120)</li>
-                            <li><b>Espagnol :</b> Notion (A2)</li>
+                            <li id="lang-fr"><b>Français :</b> Langue maternelle (C2)</li>
+                            <li id="lang-en"><b>Anglais :</b> Courant (C1 - TOEFL 99/120)</li>
+                            <li id="lang-es"><b>Espagnol :</b> Notion (A2)</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="card">
-                    <h3>Radar d'Expertise Technique</h3>
+                    <h3 id="radar-title">Radar d'Expertise Technique</h3>
                     <div style="height: 300px; position: relative;">
                         <canvas id="skillsRadar"></canvas>
                     </div>
@@ -476,21 +506,21 @@
                 
                 <!-- SIDEBAR DE SELECTION DES PROJETS -->
                 <div class="projects-sidebar">
-                    <h4>Sélectionner un Projet</h4>
+                    <h4 id="proj-side-title">Sélectionner un Projet</h4>
                     <button class="side-btn active" onclick="switchProject('proj-spatial', this)">
-                        1. Segmentation Satellite
+                        <span id="side-p1-title">1. Segmentation Satellite</span>
                         <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Python / PyTorch / Rasterio</div>
                     </button>
                     <button class="side-btn" onclick="switchProject('proj-nyc', this)">
-                        2. Machine Learning NYC
+                        <span id="side-p2-title">2. Machine Learning NYC</span>
                         <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">R / Tidymodels / Random Forest</div>
                     </button>
                     <button class="side-btn" onclick="switchProject('proj-netflix', this)">
-                        3. Séries Temporelles Netflix
+                        <span id="side-p3-title">3. Séries Temporelles Netflix</span>
                         <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">R / ARIMA / ADL & Gets</div>
                     </button>
                     <button class="side-btn" onclick="switchProject('proj-edu', this)">
-                        4. High-Dim ML & Benchmark
+                        <span id="side-p4-title">4. High-Dim ML & Benchmark</span>
                         <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">R / XGBoost / CART / Bagging</div>
                     </button>
                 </div>
@@ -506,7 +536,7 @@
 
                             <div>
 
-                                <h3 style="font-size: 19px;">Case Study 1 : Segmentation Sémantique Multi-Classes d'Images Satellites (DeepGlobe)</h3>
+                                <h3 style="font-size: 19px;" id="p1-main-title">Case Study 1 : Segmentation Sémantique Multi-Classes d'Images Satellites (DeepGlobe)</h3>
 
                                 <span class="tag tag-blue">Python</span>
 
@@ -520,13 +550,13 @@
 
                             </div>
 
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Projet Personnel - Computer Vision</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="p1-type-tag">Projet Personnel - Computer Vision</span>
 
                         </div>
 
 
 
-                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;">
+                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;" id="p1-obj-text">
 
                             <b>Objectif & Démarche :</b> Construire un pipeline complet de segmentation sémantique (7 classes d'occupation des sols : Urban, Agriculture, Rangeland, Forest, Water, Barren, Unknown) sur le dataset <b>DeepGlobe Land Cover</b>, puis <b>diagnostiquer et corriger</b> l'impact du déséquilibre des classes et du volume de données via une démarche expérimentale comparative (2 runs, analyse par métrique et par classe).
 
@@ -542,7 +572,7 @@
 
                                 <div style="font-size: 20px; font-weight: 700; color: #0369A1;">0.51 Mean IoU</div>
 
-                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;">7 classes, jeu de test (18 img.)</div>
+                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;" id="p1-kpi1-lbl">7 classes, jeu de test (18 img.)</div>
 
                             </div>
 
@@ -550,7 +580,7 @@
 
                                 <div style="font-size: 20px; font-weight: 700; color: #1D4ED8;">0.31 Mean Dice</div>
 
-                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;">Score multi-classe</div>
+                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;" id="p1-kpi2-lbl">Score multi-classe</div>
 
                             </div>
 
@@ -558,7 +588,7 @@
 
                                 <div style="font-size: 20px; font-weight: 700; color: var(--tse-blue);">+125% mIoU</div>
 
-                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Gain après scaling 20→120 images</div>
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;" id="p1-kpi3-lbl">Gain après scaling 20→120 images</div>
 
                             </div>
 
@@ -568,13 +598,13 @@
 
                         <!-- ARCHITECTURE TECHNIQUE EXHAUSTIVE ET DÉTAILLÉE -->
 
-                        <div class="tech-subtitle">Architecture Technique & Démarche Data-Centric</div>
+                        <div class="tech-subtitle" id="p1-tech-subtitle">Architecture Technique & Démarche Data-Centric</div>
 
                         
 
                         <div class="grid-2" style="margin-bottom: 15px;">
 
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p1-card1">
 
                                 <b>Pipeline de Données & Patchification</b>
 
@@ -582,7 +612,7 @@
 
                             </div>
 
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p1-card2">
 
                                 <b>Architecture U-Net & Transfer Learning ResNet34</b>
 
@@ -590,14 +620,14 @@
 
                             </div>
 
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p1-card3">
 
                                 <b>Loss Hybride Multi-Classe (50% Cross-Entropy + 50% Dice)</b>
 
                                 Face au fort déséquilibre (Agriculture = 57.7% des pixels, Water = 0.9%, Unknown = 0.06%), implémentation d'une <code>MultiClassDiceLoss</code> combinée à une Cross-Entropy standard, pour équilibrer classification pixel par pixel et qualité du chevauchement des régions rares.
 
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p1-card4">
 
                                 <b>Diagnostic Data-Centric : Volume de Données vs Performance</b>
 
@@ -619,7 +649,7 @@
 
 
 
-                        <div class="analysis-block">
+                        <div class="analysis-block" id="p1-analysis-block">
 
                             <b>Discussion & Interprétation des Résultats :</b><br>
 
@@ -634,17 +664,17 @@
                     <div id="proj-nyc" class="project-detail-card card" style="border-top: 4px solid var(--tse-blue);">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Case Study 2 : Modélisation Predictive & Benchmark ML des Prix Immobiliers à NYC</h3>
+                                <h3 style="font-size: 19px;" id="p2-main-title">Case Study 2 : Modélisation Predictive & Benchmark ML des Prix Immobiliers à NYC</h3>
                                 <span class="tag tag-blue">R</span>
                                 <span class="tag tag-blue">Tidymodels</span>
                                 <span class="tag tag-blue">Random Forest (Ranger)</span>
                                 <span class="tag tag-blue">XGBoost</span>
                                 <span class="tag tag-blue">Broom & Purrr</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Projet Académique / Machine Learning</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="p2-type-tag">Projet Académique / Machine Learning</span>
                         </div>
 
-                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;">
+                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;" id="p2-obj-text">
                             <b>Objectif & Périmètre :</b> Prédire les prix de vente de maisons individuelles (Class A) dans les 5 boroughs de New York (Bronx, Brooklyn, Manhattan, Queens, Staten Island) à partir du dataset officiel "Rolling Sales" du Département des Finances de NYC (72 538 enregistrements bruts).
                         </p>
 
@@ -652,41 +682,41 @@
                         <div class="grid-3" style="margin: 18px 0;">
                             <div style="background: #F0F9FF; border: 1px solid #BAE6FD; padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: #0369A1;">$1,258,549 RMSE</div>
-                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;">Random Forest (Gagnant Out-of-Sample)</div>
+                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;" id="p2-kpi1-lbl">Random Forest (Gagnant Out-of-Sample)</div>
                             </div>
                             <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: #1D4ED8;">$1,271,424 RMSE</div>
-                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;">Régression Linéaire Baseline</div>
+                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;" id="p2-kpi2-lbl">Régression Linéaire Baseline</div>
                             </div>
                             <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: var(--tse-dark);">$1,362,894 RMSE</div>
-                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">XGBoost (Overfitting décelé)</div>
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;" id="p2-kpi3-lbl">XGBoost (Overfitting décelé)</div>
                             </div>
                         </div>
 
                         <!-- EXPLICATION DÉTAILLÉE DU PIPELINE DATA & MODELISATION -->
-                        <div class="tech-subtitle">Workflow d'Analyse Économétrique & Benchmark Tidymodels</div>
+                        <div class="tech-subtitle" id="p2-tech-subtitle">Workflow d'Analyse Économétrique & Benchmark Tidymodels</div>
 
                         <div class="grid-2">
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p2-card1">
                                 <b>Data Cleaning & Filtrage des Anomalies Extrêmes</b>
                                 Traitement des valeurs manquantes, suppression des ventes intra-familiales (< 10 000$) et des surfaces nulles. Élimination des anomalies aberrantes faussant les régressions (ex: suppression de la transaction isolée à 72,5M$ à Manhattan, dont l'écart avec la deuxième plus haute est de 38.25M$). Échantillon final nettoyé sur 8 858 transactions (Class A).
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p2-card2">
                                 <b>Analyse Économétrique par Borough (Broom & Purrr)</b>
                                 Utilisation des fonctions <code>nest()</code>, <code>map()</code>, et <code>unnest()</code> pour estimer des régressions linéaires en parallèle par quartier. Estimation empirique des valeurs au m² : +319$/m² à Staten Island (R²=53%, p < 2e-16), +1 003$/m² à Brooklyn, et jusqu'à +2 450$/m² à Manhattan.
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p2-card3">
                                 <b>Recipe & Preprocessing Tidymodels</b>
                                 Split strict du jeu de données : 80% Training Set (7 083 obs) / 20% Testing Set (1 771 obs). Spécification de la recette intégrant l'encodage des variables muettes (<code>step_dummy</code>), l'imputation et la normalisation des variables prédictives géographiques.
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p2-card4">
                                 <b>Benchmark ML Out-of-Sample</b>
                                 Entraînement croisé de 3 architectures : Modèle Linéaire baseline, Random Forest (Ranger, 500 arbres) et XGBoost (eta=0.1, max_depth=6). Évaluation unifiée des capacités de généralisation sur le Test Set inédit via la métrique RMSE.
                             </div>
                         </div>
 
-                        <div class="analysis-block">
+                        <div class="analysis-block" id="p2-analysis-block">
                             <b>Discussion Économétrique & Interprétation des Résultats :</b><br>
                             Le benchmark montre que le <b>Random Forest offre la meilleure capacité de généralisation out-of-sample</b> (RMSE = $1,258,549) grâce au principe de bagging qui réduit la variance sur un marché très dispersé. À l'inverse, <b>XGBoost obtient la moins bonne performance</b> (RMSE = $1,362,894) : l'algorithme par boosting s'est sur-ajusté (overfitting) au bruit présent dans le Training Set en raison de la variance extrême des prix réels de l'immobilier d'exception à New York.
                         </div>
@@ -696,19 +726,18 @@
                     <div id="proj-netflix" class="project-detail-card card" style="border-top: 4px solid var(--accent-blue);">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Case Study 3 : Séries Temporelles & Test d'Efficience du Marché (Netflix)</h3>
+                                <h3 style="font-size: 19px;" id="p3-main-title">Case Study 3 : Séries Temporelles & Test d'Efficience du Marché (Netflix)</h3>
                                 <span class="tag tag-blue">R</span>
                                 <span class="tag tag-blue">ARIMA (Auto.arima)</span>
                                 <span class="tag tag-blue">ADL / Gets</span>
                                 <span class="tag tag-blue">Test de Causalité de Granger</span>
                                 <span class="tag tag-blue">Diagnostic ARCH / Ljung-Box</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Projet Académique / Économétrie</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="p3-type-tag">Projet Académique / Économétrie</span>
                         </div>
 
-                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;">
+                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;" id="p3-obj-text">
                             <b>Problématique Financière : Le volume d'échange quotidien passé contient-il une information exploitable pour prédire les rendements futurs de l'action Netflix ? </b><br> 
-                            <h></h>
                             Analyse économétrique rigoureuse sur 23 ans d'historique (2002-2025, 5 742 observations quotidiennes).
                         </p>
 
@@ -716,41 +745,41 @@
                         <div class="grid-3" style="margin: 18px 0;">
                             <div style="background: #F0F9FF; border: 1px solid #BAE6FD; padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: #0369A1;">ARIMA(0,0,1)</div>
-                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;">Meilleur Modèle Univarié (AIC: -22139)</div>
+                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;" id="p3-kpi1-lbl">Meilleur Modèle Univarié (AIC: -22139)</div>
                             </div>
                             <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: #1D4ED8;">p = 0.2627</div>
-                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;">Test Granger (Non-causalité du Volume)</div>
+                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;" id="p3-kpi2-lbl">Test Granger (Non-causalité du Volume)</div>
                             </div>
                             <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px;">
-                                <div style="font-size: 18px; font-weight: 700; color: var(--tse-blue);">EMH Validée</div>
-                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Marché Efficient sous forme faible</div>
+                                <div style="font-size: 18px; font-weight: 700; color: var(--tse-blue);" id="p3-kpi3-val">EMH Validée</div>
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;" id="p3-kpi3-lbl">Marché Efficient sous forme faible</div>
                             </div>
                         </div>
 
                         <!-- DETAIL DES ETAPES ECONOMETRIQUES -->
-                        <div class="tech-subtitle">Démarche Économétrique & Diagnostics de Robustesse</div>
+                        <div class="tech-subtitle" id="p3-tech-subtitle">Démarche Économétrique & Diagnostics de Robustesse</div>
 
                         <div class="grid-2">
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p3-card1">
                                 <b>Tests de Stationnarité (ADF vs KPSS) & Log-Rendements</b>
                                 Mise en évidence de la non-stationnarité sur le cours de clôture brut (ADF p=0.975, KPSS p=0.01). Application de la première différence logarithmique sur les variables pour obtenir des log-rendements quotidiens strictement stationnaires (p=0.01 aux tests ADF sur séries différenciées).
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p3-card2">
                                 <b>Modélisation ARIMA & Diagnostic Bruit Blanc</b>
                                 Comparaison des modèles univariés par critères d'information. L'ARIMA(0,0,1) retenant un coefficient MA(1) significatif (0.0275, p < 0.05). Validation de l'absence d'autocorrélation résiduelle par le test de Ljung-Box sur 4 lags (p=0.2876), garantissant des résidus en bruit blanc.
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p3-card3">
                                 <b>Modèle ADL Multivarié & Algorithme GETS</b>
                                 Construction d'un modèle Autoregressive Distributed Lag avec 8 retardements sur le volume et le rendement. Utilisation de l'algorithme de réduction automatique <code>gets</code> (General-to-Specific). <b>Résultat :</b> 100% des lags de volume ont été éliminés pour non-significativité, ne conservant que Lag 1 (+0.0289) et Lag 8 (-0.0280) des rendements.
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p3-card4">
                                 <b>Diagnostic Volatilité (Effet ARCH) & Forecast</b>
                                 Le test ARCH-LM sur les résidus révèle une forte hétéroscédasticité conditionnelle (p = 0.0003), caractéristique classique d'agglomération de volatilité (volatility clustering). Génération d'une prévision à 30 jours convergeant vers le rendement moyen.
                             </div>
                         </div>
 
-                        <div class="analysis-block">
+                        <div class="analysis-block" id="p3-analysis-block">
                             <b>Conclusion Économétrique & Portée Financière :</b><br>
                             Le test de causalité au sens de Granger (p=0.2627 pour Volume --> Rendement) associé à l'élimination systématique du volume dans le modèle ADL par l'algorithme GETS démontre que <b>le volume de transactions passé n'apporte aucune valeur prédictive sur les rendements futurs de Netflix</b>. Ce résultat apporte une preuve empirique solide en faveur de l'<b>Hypothèse d'Efficience du Marché (EMH) sous sa forme faible</b> : sur des grandes valeurs très liquides, toute l'information contenue dans le volume est instantanément arbitrée et intégrée dans le prix.
                         </div>
@@ -760,7 +789,7 @@
                     <div id="proj-edu" class="project-detail-card card" style="border-top: 4px solid var(--accent-blue);">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Case Study 4 : Modélisation Prédictive & Data Mining de la Réussite Scolaire</h3>
+                                <h3 style="font-size: 19px;" id="p4-main-title">Case Study 4 : Modélisation Prédictive & Data Mining de la Réussite Scolaire</h3>
                                 <span class="tag tag-blue">R</span>
                                 <span class="tag tag-blue">XGBoost</span>
                                 <span class="tag tag-blue">Random Forest</span>
@@ -768,10 +797,10 @@
                                 <span class="tag tag-blue">LDA & ACP</span>
                                 <span class="tag tag-blue">Bootstrap / Bagging</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Projet Académique / High-Dimensional Data</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="p4-type-tag">Projet Académique / High-Dimensional Data</span>
                         </div>
 
-                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;">
+                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;" id="p4-obj-text">
                             <b>Objectif & Problématique :</b> Prédire la réussite ou l'échec (note du troisième examen G3 supérieure à 10/20 vs G3 inférieure à 10/20) d'élèves de l'enseignement secondaire portugais à partir de 33 variables comportementales, démographiques, sociales et académiques (Dataset UCI, 395 étudiants). Évaluation comparative de la capacité prédictive avec et sans les notes intermédiaires (G1, G2).
                         </p>
 
@@ -779,44 +808,44 @@
                         <div class="grid-3" style="margin: 18px 0;">
                             <div style="background: #F0F9FF; border: 1px solid #BAE6FD; padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: #0369A1;">90.76% Accuracy</div>
-                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;">XGBoost & Random Forest (Full)</div>
+                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;" id="p4-kpi1-lbl">XGBoost & Random Forest (Full)</div>
                             </div>
                             <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: #1D4ED8;">0.9723 AUC</div>
-                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;">XGBoost (Discrimination Globale)</div>
+                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;" id="p4-kpi2-lbl">XGBoost (Discrimination Globale)</div>
                             </div>
                             <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px;">
-                                <div style="font-size: 18px; font-weight: 700; color: var(--tse-blue);">94.59% Spécificité</div>
-                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">CART Élagué (Détection Échecs)</div>
+                                <div style="font-size: 18px; font-weight: 700; color: var(--tse-blue);" id="p4-kpi3-val">94.59% Spécificité</div>
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;" id="p4-kpi3-lbl">CART Élagué (Détection Échecs)</div>
                             </div>
                         </div>
 
                         <!-- DETAILS DES METHODES IMPLEMENTEES AVEC VRAIES LISTES HTML -->
-                        <div class="tech-subtitle">Méthodologie Multi-Algorithmique & Analyse Comparative</div>
+                        <div class="tech-subtitle" id="p4-tech-subtitle">Méthodologie Multi-Algorithmique & Analyse Comparative</div>
 
                         <div class="grid-2">
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p4-card1">
                                 <b>ACP & Analyse Discriminante (LDA)</b>
                                 <ul class="feature-list">
                                     <li><b>ACP :</b> Résumé de la variance sur 5 composantes principales (Kaiser). PC1 (21.2% var) capture la performance académique et PC2 (13.1% var) le mode de vie (alcool, sorties).</li>
                                     <li><b>LDA :</b> Séparation linéaire optimale sur le Full Model (Accuracy = 88.24%, AUC = 0.9565).</li>
                                 </ul>
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p4-card2">
                                 <b>Arbres CART Élagués (1-SE Rule)</b>
                                 <ul class="feature-list">
                                     <li><b>Full Model :</b> Élagage du Maximal Tree (15 noeuds) par la règle 1-SE (cp=0.0107). L'arbre élagué se réduit à un split unique sur G2 (Accuracy = 91.60%, Spécificité = 94.59%).</li>
                                     <li><b>Reduced Model :</b> Le split principal pivote exclusivement sur le nombre d'échecs passés (<code>failures</code>).</li>
                                 </ul>
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p4-card3">
                                 <b>Bootstrap (5000 itérations) & Bagging</b>
                                 <ul class="feature-list">
                                     <li><b>Incertitude :</b> Ré-échantillonnage Bootstrap (5 000 répliques) pour estimer les CIs à 95% sans hypothèse de normalité.</li>
                                     <li><b>Bagging Logistique (300 arbres) :</b> Régularisation de la séparation parfaite causée par G2, faisant passer l'accuracy de 84.87% à 89.08%.</li>
                                 </ul>
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="p4-card4">
                                 <b>Ensembles Avancés : Random Forest & XGBoost</b>
                                 <ul class="feature-list">
                                     <li><b>Random Forest :</b> 500 arbres (mtry=7 optimisé OOB), erreur OOB de 8.7% et Accuracy = 90.76% en test.</li>
@@ -825,7 +854,7 @@
                             </div>
                         </div>
 
-                        <div class="analysis-block">
+                        <div class="analysis-block" id="p4-analysis-block">
                             <b>Synthèse des Performances & Pourquoi ces Modèles Réussissent :</b><br>
                             • <b>XGBoost est le meilleur classifieur global </b>(AUC = 0.9723) grâce à sa capacité d'optimisation séquentielle par gradient qui minimise l'erreur sur les marges complexes de décision.<br>
                             • <b>CART Élagué (1-SE) offre la meilleure détection des élèves en danger</b> (94.59% de spécificité, 91.60% d'accuracy) car la règle de complexité isole parfaitement le seuil critique sur G2 sans bruit.<br>
@@ -844,22 +873,22 @@
                 
                 <!-- SIDEBAR DE SÉLECTION DES EXPÉRIENCES -->
                 <div class="experiences-sidebar">
-                    <h4>Sélectionner une Expérience</h4>
+                    <h4 id="exp-side-title">Sélectionner une Expérience</h4>
                     <button class="side-btn active" onclick="switchExperience('exp-avisia', this)">
-                        1. Stage Data & IA (AVISIA)
+                        <span id="side-e1-title">1. Stage Data & IA (AVISIA)</span>
                         <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">IA Agentique / MCP / Dataiku</div>
                     </button>
                     <button class="side-btn" onclick="switchExperience('exp-asso', this)">
-                        2. Trésorière (Junior-Entreprise)
-                        <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Gestion Financière & Budgétaire</div>
+                        <span id="side-e2-title">2. Trésorière (Junior-Entreprise)</span>
+                        <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;" id="side-e2-sub">Gestion Financière & Budgétaire</div>
                     </button>
                     <button class="side-btn" onclick="switchExperience('exp-liebherr', this)">
-                        3. Agent Logistique (Liebherr)
-                        <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Aéronautique / Logistique</div>
+                        <span id="side-e3-title">3. Agent Logistique (Liebherr)</span>
+                        <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;" id="side-e3-sub">Aéronautique / Logistique</div>
                     </button>
                     <button class="side-btn" onclick="switchExperience('exp-rectorat', this)">
-                        4. Surveillante (Rectorat)
-                        <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;">Organisation CRPE</div>
+                        <span id="side-e4-title">4. Surveillante (Rectorat)</span>
+                        <div style="font-size: 10px; color: var(--text-muted); font-weight: normal;" id="side-e4-sub">Organisation CRPE</div>
                     </button>
                 </div>
 
@@ -870,7 +899,7 @@
                     <div id="exp-avisia" class="exp-detail-card card active" style="border-top: 4px solid var(--tse-blue);">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Stage Data Scientist & IA Agentique - AVISIA (Cabinet Conseil Data & IA, Paris)</h3>
+                                <h3 style="font-size: 19px;" id="e1-main-title">Stage Data Scientist & IA Agentique - AVISIA (Cabinet Conseil Data & IA, Paris)</h3>
                                 <span class="tag tag-blue">Python</span>
                                 <span class="tag tag-blue">Dataiku DSS API</span>
                                 <span class="tag tag-blue">Model Context Protocol</span>
@@ -879,34 +908,34 @@
                                 <span class="tag tag-blue">OpenAI GPT</span>
                                 <span class="tag tag-blue">SAS Viya</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Avril 2026 - Juillet 2026 (4 mois)</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="e1-date-tag">Avril 2026 - Juillet 2026 (4 mois)</span>
                         </div>
 
-                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;">
+                        <p style="font-size: 13.5px; color: var(--text-dark); margin-top: 12px; line-height: 1.7;" id="e1-obj-text">
                             <b>Mission & Enjeux Industriels :</b> Conception et développement de bout en bout d'un <b>Assistant IA Agentique autonome et orchestré</b> dédié à la modernisation et à l'automatisation intégrale du cycle de migration de pipelines analytiques (fichiers SQL/SAS) vers des plateformes Data modernes (Dataiku DSS).
                         </p>
 
                         <!-- KPIS D'IMPACT DU STAGE -->
                         <div class="grid-3" style="margin: 18px 0;">
                             <div style="background: #F0F9FF; border: 1px solid #BAE6FD; padding: 12px 16px; border-radius: 8px;">
-                                <div style="font-size: 18px; font-weight: 700; color: #0369A1;">100% Automatisé</div>
-                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;">Parsing, Flow & Deploy MCP</div>
+                                <div style="font-size: 18px; font-weight: 700; color: #0369A1;" id="e1-kpi1-val">100% Automatisé</div>
+                                <div style="font-size: 11px; color: #075985; font-weight: 600; text-transform: uppercase;" id="e1-kpi1-lbl">Parsing, Flow & Deploy MCP</div>
                             </div>
                             <div style="background: #EFF6FF; border: 1px solid #BFDBFE; padding: 12px 16px; border-radius: 8px;">
-                                <div style="font-size: 18px; font-weight: 700; color: #1D4ED8;">5 Agents IA</div>
-                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;">Orchestration Multi-Agents</div>
+                                <div style="font-size: 18px; font-weight: 700; color: #1D4ED8;" id="e1-kpi2-val">5 Agents IA</div>
+                                <div style="font-size: 11px; color: #1E40AF; font-weight: 600; text-transform: uppercase;" id="e1-kpi2-lbl">Orchestration Multi-Agents</div>
                             </div>
                             <div style="background: #F8FAFC; border: 1px solid var(--border-color); padding: 12px 16px; border-radius: 8px;">
                                 <div style="font-size: 18px; font-weight: 700; color: var(--tse-blue);">Ground Truth</div>
-                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Validation Statistique Parité</div>
+                                <div style="font-size: 11px; color: var(--text-muted); font-weight: 600; text-transform: uppercase;" id="e1-kpi3-lbl">Validation Statistique Parité</div>
                             </div>
                         </div>
 
                         <!-- ARCHITECTURE TECHNIQUE APPROFONDIE DU STAGE -->
-                        <div class="tech-subtitle">Architecture du Système Multi-Agents & Stack Technique</div>
+                        <div class="tech-subtitle" id="e1-tech-subtitle">Architecture du Système Multi-Agents & Stack Technique</div>
 
                         <div class="grid-2" style="margin-bottom: 15px;">
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="e1-card1">
                                 <b>System Prompts & Rôles des 5 Agents Spécialisés</b>
                                 <ul class="feature-list">
                                     <li><b>Audit Agent :</b> Parsing sémantique du code source, résolution des macros imbriquées, calcul de complexité (SQL/Python) et génération du graphe de dépendances DAG (<code>audit.json</code>).</li>
@@ -916,15 +945,15 @@
                                     <li><b>Report Generator Agent :</b> Synthèse Markdown & graphes Mermaid.</li>
                                 </ul>
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="e1-card2">
                                 <b>Serveur Model Context Protocol (MCP) Dataiku</b>
                                 Développement d'un serveur MCP dédié encapsulant l'API Python <code>dataikuapi</code> sous forme d'outils JSON-RPC typés. Le protocole MCP offre une couche d'abstraction sécurisée permettant aux agents d'interagir directement avec Dataiku DSS (création/mise à jour de recettes, déploiement des datasets, exécution asynchrone des jobs) sans manipulation d'API bas niveau.
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="e1-card3">
                                 <b>Boucle Fermée d'Auto-Correction</b>
                                 Implémentation d'un mécanisme itératif de capture des logs d'erreurs d'exécution et des tracebacks Dataiku. En cas d'échec du job, le Verifier Agent réinjecte le contexte de l'erreur au Translator Agent pour réviser dynamiquement le code généré (jusqu'à 3 itérations) avant validation définitive.
                             </div>
-                            <div class="tech-feature-card">
+                            <div class="tech-feature-card" id="e1-card4">
                                 <b>Validation Statistique "Ground Truth" de Parité</b>
                                 Élaboration d'un protocole de validation statistique rigoureux à 3 niveaux pour garantir l'exactitude des calculs :
                                 <ol class="feature-list" style="padding-left: 20px;">
@@ -935,7 +964,7 @@
                             </div>
                         </div>
 
-                        <div class="tech-feature-card" style="margin-bottom: 15px;">
+                        <div class="tech-feature-card" style="margin-bottom: 15px;" id="e1-card5">
                             <b>Application Web Fullstack de Monitoring UX (FastAPI + HTML/JS)</b>
                             Conception d'un dashboard interactif dédié aux chefs de projets et consultants :
                             <ul class="feature-list">
@@ -945,26 +974,42 @@
                             </ul>
                         </div>
 
-                        <div class="analysis-block">
+                        <div class="analysis-block" id="e1-analysis-block">
                             <b>Apports & Compétences Clés Mobilisées :</b><br>
                             Ce stage m'a permis de maîtriser l'état de l'art du paradigme agentique (ReAct, systèmes multi-agents, orchestration, Model Context Protocol), d'approfondir l'automatisation d'API complexes (`dataikuapi`) et d'appliquer des principes économétriques/statistiques au contrôle de parité des données en entreprise.
                         </div>
+
+                        <!-- ACCORDÉON LETTRE DE RECOMMANDATION -->
+                        <details style="margin-top: 15px; margin-bottom: 15px; border: 1px solid #E9D5FF; border-radius: 8px; padding: 12px; background: #FAF5FF;">
+                            <summary style="font-weight: 600; color: #6B21A8; cursor: pointer; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+                                <span id="e1-rec-title">Consulter la lettre de recommandation (AVISIA)</span>
+                            </summary>
+                            
+                            <!-- Message de contexte (apparaît en anglais quand basculé) -->
+                            <p id="e1-rec-note" style="font-size: 12px; color: #7E22CE; margin-top: 10px; margin-bottom: 8px; font-style: italic;">
+                                Document officiel original issu de la direction AVISIA.
+                            </p>
+
+                            <div style="margin-top: 10px;">
+                                <iframe src="Lettre_de_recommandation_AVISIA.pdf" width="100%" height="450px" style="border: 1px solid #D8B4FE; border-radius: 6px;"></iframe>
+                            </div>
+                        </details>
                     </div>
 
                     <!-- EXPÉRIENCE 2 : TRÉSORIÈRE JUNIOR-ENTREPRISE -->
                     <div id="exp-asso" class="exp-detail-card card">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Trésorière - Junior-Entreprise (Toulouse School of Economics)</h3>
-                                <span class="tag">Gestion Financière</span>
-                                <span class="tag">Comptabilité</span>
-                                <span class="tag">Budgétisation</span>
-                                <span class="tag">Déclaratifs Fiscaux et Sociaux</span>
+                                <h3 style="font-size: 19px;" id="e2-main-title">Trésorière - Junior-Entreprise (Toulouse School of Economics)</h3>
+                                <span class="tag" id="e2-tag1">Gestion Financière</span>
+                                <span class="tag" id="e2-tag2">Comptabilité</span>
+                                <span class="tag" id="e2-tag3">Budgétisation</span>
+                                <span class="tag" id="e2-tag4">Déclaratifs Fiscaux et Sociaux</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Mandat 2026 - 2027</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="e2-date-tag">Mandat 2026 - 2027</span>
                         </div>
 
-                        <ul style="font-size: 13.5px; color: var(--text-dark); margin-top: 15px; padding-left: 18px; line-height: 1.7;">
+                        <ul style="font-size: 13.5px; color: var(--text-dark); margin-top: 15px; padding-left: 18px; line-height: 1.7;" id="e2-list">
                             <li>Responsable intégrale du pôle Trésorerie de la structure associative.</li>
                             <li>Management des membres de la structure avec le Bureau.</li>
                             <li>Élaboration et suivi du budget prévisionnel annuel, gestion des trésoreries courantes et paies.</li>
@@ -977,16 +1022,16 @@
                     <div id="exp-liebherr" class="exp-detail-card card">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Agent Logistique - Liebherr Aerospace</h3>
-                                <span class="tag">Aéronautique</span>
-                                <span class="tag">Logistique</span>
-                                <span class="tag">Rigueur Industrielle</span>
-                                <span class="tag">Travail d'Équipe</span>
+                                <h3 style="font-size: 19px;" id="e3-main-title">Agent Logistique - Liebherr Aerospace</h3>
+                                <span class="tag" id="e3-tag1">Aéronautique</span>
+                                <span class="tag" id="e3-tag2">Logistique</span>
+                                <span class="tag" id="e3-tag3">Rigueur Industrielle</span>
+                                <span class="tag" id="e3-tag4">Travail d'Équipe</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Étés 2024 & 2025</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="e3-date-tag">Étés 2024 & 2025</span>
                         </div>
 
-                        <ul style="font-size: 13.5px; color: var(--text-dark); margin-top: 15px; padding-left: 18px; line-height: 1.7;">
+                        <ul style="font-size: 13.5px; color: var(--text-dark); margin-top: 15px; padding-left: 18px; line-height: 1.7;" id="e3-list">
                             <li>Préparation de commandes et gestion de flux logistiques au sein d'un site de production aéronautique majeur.</li>
                             <li>Respect des procédures strictes de traçabilité et des normes de sécurité de l'industrie aéronautique.</li>
                             <li>Organisation, rigueur opérationnelle, gestion du temps et sens des priorités en environnement cadencé.</li>
@@ -997,15 +1042,15 @@
                     <div id="exp-rectorat" class="exp-detail-card card">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px;">
                             <div>
-                                <h3 style="font-size: 19px;">Surveillante de Concours - Rectorat de Toulouse</h3>
-                                <span class="tag">Secteur Public</span>
-                                <span class="tag">Organisation</span>
-                                <span class="tag">Responsabilité</span>
+                                <h3 style="font-size: 19px;" id="e4-main-title">Surveillante de Concours - Rectorat de Toulouse</h3>
+                                <span class="tag" id="e4-tag1">Secteur Public</span>
+                                <span class="tag" id="e4-tag2">Organisation</span>
+                                <span class="tag" id="e4-tag3">Responsabilité</span>
                             </div>
-                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;">Étés 2022 & 2023</span>
+                            <span style="font-size: 12px; font-weight: 600; color: var(--tse-blue); background: var(--accent-soft); padding: 5px 12px; border-radius: 20px;" id="e4-date-tag">Étés 2022 & 2023</span>
                         </div>
 
-                        <ul style="font-size: 13.5px; color: var(--text-dark); margin-top: 15px; padding-left: 18px; line-height: 1.7;">
+                        <ul style="font-size: 13.5px; color: var(--text-dark); margin-top: 15px; padding-left: 18px; line-height: 1.7;" id="e4-list">
                             <li>Aide à l'organisation et au bon déroulement des épreuves du Concours Recrutement Professeurs des Écoles (CRPE).</li>
                             <li>Accueil des candidats, vérification des identités, respect du protocole d'examen officiel et fiabilité administrative.</li>
                         </ul>
@@ -1020,22 +1065,22 @@
         <div id="tab-interets" class="tab-content">
             <div class="grid-3">
                 <div class="card" style="text-align: center;">
-                    <h3>Handball</h3>
-                    <p style="font-size: 13px; color: var(--text-muted);">
+                    <h3 id="interest1-title">Handball</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="interest1-desc">
                         <b>10 ans de pratique</b><br>Bénévolat lors d'events et engagement au club US Aucamville Handball.
                     </p>
                 </div>
 
                 <div class="card" style="text-align: center;">
-                    <h3>Natation</h3>
-                    <p style="font-size: 13px; color: var(--text-muted);">
+                    <h3 id="interest2-title">Natation</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="interest2-desc">
                         <b>15 ans de pratique</b> <br> Entraînement régulier et participation à des compétitions internes.
                     </p>
                 </div>
 
                 <div class="card" style="text-align: center;">
-                    <h3>Ouverture Internationale</h3>
-                    <p style="font-size: 13px; color: var(--text-muted);">
+                    <h3 id="interest3-title">Ouverture Internationale</h3>
+                    <p style="font-size: 13px; color: var(--text-muted);" id="interest3-desc">
                         <b>Curiosité, flexibilité et adaptabilité</b> <br>Découverte et immersion dans différentes cultures étrangères.
                     </p>
                 </div>
@@ -1044,8 +1089,622 @@
 
     </div>
 
-    <!-- SCRIPTS INTERACTIFS -->
+    <!-- SCRIPTS INTERACTIFS & DICTIONNAIRE MULTILINGUE -->
     <script>
+        let currentLang = 'fr';
+
+        const i18n = {
+            fr: {
+                langBtn: "English Version",
+                headerSubtitle: "Master 2 Data Science for Social Sciences (Voie Internationale) • TSE",
+                headerBadge: "Recherche Stage de Fin d'Études Data Science & Intelligence Artificielle (Avril 2027)",
+                cvDownloadBtn: "Télécharger CV (PDF)",
+                cvFile: "CV_Zoe_Julliard_Bonnouvriee_FR.pdf",
+                tabs: {
+                    accueil: "Accueil & Synthèse",
+                    formation: "Formations & Diplômes",
+                    competences: "Compétences & Outils",
+                    projets: "Projets Data Science",
+                    experiences: "Expériences Pros",
+                    interets: "Centres d'Intérêt"
+                },
+                kpi: {
+                    k1_lbl: "Double Licence Éco-Maths & M1 Data Science Validé",
+                    k2_val: "IA Agentique & LLM",
+                    k2_lbl: "Stage AVISIA • MCP & Dataiku",
+                    k3_lbl: "Computer Vision & Deep Learning"
+                },
+                aboutTitle: "À propos & Objectif Professionnel",
+                aboutText: "Je recherche un <b>stage de fin d'études en Data Science & Intelligence Artificielle (6 mois) à partir d'avril 2027</b>. Fortement ancrée dans une double culture <b>mathématique et data science</b> développée à la <b>Toulouse School of Economics (TSE)</b>, je conçois des solutions algorithmiques performantes appliquées aux systèmes complexes. Particulièrement attirée par l'ingénierie des données et la modélisation avancée (<b>IA Agentique, Computer Vision, Séries Temporelles, LLM</b>), je souhaite mettre ces compétences au service de projets d'innovation dans les secteurs industriels ou bancaires.",
+                eduTitle: "Formations & Diplômes",
+                edu: {
+                    e1_degree: "Master 2 Data Science for Social Sciences - International Track",
+                    e1_sub: "2026 - 2027 | Toulouse School of Economics, Université Toulouse Capitole 1",
+                    e1_desc: "<b>Parcours M2 :</b> Spécialisation en modélisation avancée, IA, deep learning et grands volumes de données.",
+                    e2_degree: "Master 1 Data Science for Social Sciences - International Track",
+                    e2_sub: "2025 - 2026 | Toulouse School of Economics, Université Toulouse Capitole 1 | Mention Très Bien",
+                    e2_desc: "<b>Cours :</b> Python, R, Économétrie, Statistiques, Machine Learning, Time Series, Finance.",
+                    e3_degree: "Année d'échange universitaire",
+                    e3_sub: "2024 - 2025 | Université d'Oslo (Norvège)",
+                    e3_desc: "<b>Cours :</b> R, Data Science, Time Series, Économétrie, Corporate Finance.",
+                    e4_degree: "Double Licence Économie et Mathématiques",
+                    e4_sub: "2021 - 2024 | Toulouse School of Economics, Université Toulouse Capitole 1",
+                    e4_desc: "Formation bidisciplinaire exigeante en fondements mathématiques, statistiques et théorie économique.",
+                    e5_degree: "Baccalauréat",
+                    e5_sub: "2020 - 2021 | Lycée de Seilh",
+                    e5_desc: "Mention Très Bien • Spécialité Mathématiques & Physiques-Chimie Option Mathématiques Expertes"
+                },
+                kpiAnitiVal: "Bourse d'Excellence ANITI",
+                kpiAnitiLbl: "Institut 3IA de Toulouse",
+                eduAniti: "Lauréate de la bourse d'excellence ANITI (Artificial and Natural Intelligence Toulouse Institute)",
+                skillsTitle: "Compétences Techniques & Langues",
+                radarTitle: "Radar d'Expertise Technique",
+                skills: {
+                    cat1: "Langages de programmation :",
+                    cat2: "IA & Machine Learning :",
+                    cat3: "Outils, MLOps & Frameworks :",
+                    cat4: "Langues :",
+                    p1: "Python (avancé)", p2: "R (avancé)", p3: "SQL (intermédiaire)", p4: "SAS (notions)",
+                    ml2: "IA Agentique", ml3: "Séries Temporelles (ARIMA, ADL)", ml5: "Économétrie",
+                    langFr: "<b>Français :</b> Langue maternelle (C2)",
+                    langEn: "<b>Anglais :</b> Courant (C1 - TOEFL 99/120)",
+                    langEs: "<b>Espagnol :</b> Notion (A2)"
+                },
+                projSideTitle: "Sélectionner un Projet",
+                sideProjTitles: {
+                    p1: "1. Segmentation Satellite",
+                    p2: "2. Machine Learning NYC",
+                    p3: "3. Séries Temporelles Netflix",
+                    p4: "4. High-Dim ML & Benchmark"
+                },
+                p1: {
+                    title: "Case Study 1 : Segmentation Sémantique Multi-Classes d'Images Satellites (DeepGlobe)",
+                    typeTag: "Projet Personnel - Computer Vision",
+                    objText: "<b>Objectif & Démarche :</b> Construire un pipeline complet de segmentation sémantique (7 classes d'occupation des sols : Urban, Agriculture, Rangeland, Forest, Water, Barren, Unknown) sur le dataset <b>DeepGlobe Land Cover</b>, puis <b>diagnostiquer et corriger</b> l'impact du déséquilibre des classes et du volume de données via une démarche expérimentale comparative (2 runs, analyse par métrique et par classe).",
+                    kpi1Lbl: "7 classes, jeu de test (18 img.)",
+                    kpi2Lbl: "Score multi-classe",
+                    kpi3Lbl: "Gain après scaling 20→120 images",
+                    techSub: "Architecture Technique & Démarche Data-Centric",
+                    c1: "<b>Pipeline de Données & Patchification</b>Découpage des tuiles DeepGlobe en patches de 256 x 256 pixels via un <code>Dataset</code> PyTorch sur mesure, normalisation ImageNet. Split effectué au niveau des images complètes (84 train / 18 validation / 18 test) pour éviter toute fuite de données entre patches d'une même tuile.",
+                    c2: "<b>Architecture U-Net & Transfer Learning ResNet34</b>Réseau U-Net (encodeur-décodeur avec skip connections) via <code>segmentation_models_pytorch</code>, avec un backbone <b>ResNet34 pré-entraîné sur ImageNet</b> pour extraire contours et textures dès les premières époques.",
+                    c3: "<b>Loss Hybride Multi-Classe (50% Cross-Entropy + 50% Dice)</b>Face au fort déséquilibre (Agriculture = 57.7% des pixels, Water = 0.9%, Unknown = 0.06%), implémentation d'une <code>MultiClassDiceLoss</code> combinée à une Cross-Entropy standard, pour équilibrer classification pixel par pixel et qualité du chevauchement des régions rares.",
+                    c4: "<b>Diagnostic Data-Centric : Volume de Données vs Performance</b>Comparaison contrôlée de deux runs (20 vs 120 images, 3 vs 5 époques) avec analyse par matrice de confusion et IoU par classe :<ul style='margin: 8px 0 0 16px; padding: 0; line-height: 1.6;'><li><b style='display:inline; color:inherit; font-size:inherit;'>Agriculture</b> (classe majoritaire, 57.7% des pixels) : IoU 0.73, 92% des pixels bien classés dès le premier run.</li><li><b style='display:inline; color:inherit; font-size:inherit;'>Urban / Water</b> (classes rares) : IoU passé de 0.00 à 0.61 / 0.67 grâce au scaling du dataset (20 → 120 images).</li><li><b style='display:inline; color:inherit; font-size:inherit;'>Rangeland</b> : IoU 0.25, confondue à 49% avec Agriculture - confusion sémantique non résolue par le seul volume de données.</li></ul>",
+                    analysis: "<b>Discussion & Interprétation des Résultats :</b><br>Le passage de 20 à 120 images d'entraînement a fait passer le <b>Mean IoU de 22.7% à 51.0%</b>, avec des classes rares (Urban, Water) passant d'un IoU de <b>0.00 à respectivement 0.61 et 0.67</b> - la preuve que le facteur limitant initial était le volume de données, pas l'architecture du modèle. Fait notable : la <b>Pixel Accuracy a légèrement baissé</b> (80.4% → 77.2%) alors que la qualité réelle de segmentation progressait fortement, car le modèle a cessé de 'parier' par défaut sur la classe majoritaire (Agriculture). Seule <b>Rangeland</b> reste difficile (IoU 0.25, confondue à 49% avec Agriculture) : une confusion sémantique et visuelle intrinsèque entre les deux classes, non résolue par le seul volume de données."
+                },
+                p2: {
+                    title: "Case Study 2 : Modélisation Predictive & Benchmark ML des Prix Immobiliers à NYC",
+                    typeTag: "Projet Académique / Machine Learning",
+                    objText: "<b>Objectif & Périmètre :</b> Prédire les prix de vente de maisons individuelles (Class A) dans les 5 boroughs de New York (Bronx, Brooklyn, Manhattan, Queens, Staten Island) à partir du dataset officiel 'Rolling Sales' du Département des Finances de NYC (72 538 enregistrements bruts).",
+                    kpi1Lbl: "Random Forest (Gagnant Out-of-Sample)",
+                    kpi2Lbl: "Régression Linéaire Baseline",
+                    kpi3Lbl: "XGBoost (Overfitting décelé)",
+                    techSub: "Workflow d'Analyse Économétrique & Benchmark Tidymodels",
+                    c1: "<b>Data Cleaning & Filtrage des Anomalies Extrêmes</b>Traitement des valeurs manquantes, suppression des ventes intra-familiales (< 10 000$) et des surfaces nulles. Élimination des anomalies aberrantes faussant les régressions (ex: suppression de la transaction isolée à 72,5M$ à Manhattan, dont l'écart avec la deuxième plus haute est de 38.25M$). Échantillon final nettoyé sur 8 858 transactions (Class A).",
+                    c2: "<b>Analyse Économétrique par Borough (Broom & Purrr)</b>Utilisation des fonctions <code>nest()</code>, <code>map()</code>, et <code>unnest()</code> pour estimer des régressions linéaires en parallèle par quartier. Estimation empirique des valeurs au m² : +319$/m² à Staten Island (R²=53%, p < 2e-16), +1 003$/m² à Brooklyn, et jusqu'à +2 450$/m² à Manhattan.",
+                    c3: "<b>Recipe & Preprocessing Tidymodels</b>Split strict du jeu de données : 80% Training Set (7 083 obs) / 20% Testing Set (1 771 obs). Spécification de la recette intégrant l'encodage des variables muettes (<code>step_dummy</code>), l'imputation et la normalisation des variables prédictives géographiques.",
+                    c4: "<b>Benchmark ML Out-of-Sample</b>Entraînement croisé de 3 architectures : Modèle Linéaire baseline, Random Forest (Ranger, 500 arbres) et XGBoost (eta=0.1, max_depth=6). Évaluation unifiée des capacités de généralisation sur le Test Set inédit via la métrique RMSE.",
+                    analysis: "<b>Discussion Économétrique & Interprétation des Résultats :</b><br>Le benchmark montre que le <b>Random Forest offre la meilleure capacité de généralisation out-of-sample</b> (RMSE = $1,258,549) grâce au principe de bagging qui réduit la variance sur un marché très dispersé. À l'inverse, <b>XGBoost obtient la moins bonne performance</b> (RMSE = $1,362,894) : l'algorithme par boosting s'est sur-ajusté (overfitting) au bruit présent dans le Training Set en raison de la variance extrême des prix réels de l'immobilier d'exception à New York."
+                },
+                p3: {
+                    title: "Case Study 3 : Séries Temporelles & Test d'Efficience du Marché (Netflix)",
+                    typeTag: "Projet Académique / Économétrie",
+                    objText: "<b>Problématique Financière : Le volume d'échange quotidien passé contient-il une information exploitable pour prédire les rendements futurs de l'action Netflix ? </b><br>Analyse économétrique rigoureuse sur 23 ans d'historique (2002-2025, 5 742 observations quotidiennes).",
+                    kpi1Lbl: "Meilleur Modèle Univarié (AIC: -22139)",
+                    kpi2Lbl: "Test Granger (Non-causalité du Volume)",
+                    kpi3Val: "EMH Validée",
+                    kpi3Lbl: "Marché Efficient sous forme faible",
+                    techSub: "Démarche Économétrique & Diagnostics de Robustesse",
+                    c1: "<b>Tests de Stationnarité (ADF vs KPSS) & Log-Rendements</b>Mise en évidence de la non-stationnarité sur le cours de clôture brut (ADF p=0.975, KPSS p=0.01). Application de la première différence logarithmique sur les variables pour obtenir des log-rendements quotidiens strictement stationnaires (p=0.01 aux tests ADF sur séries différenciées).",
+                    c2: "<b>Modélisation ARIMA & Diagnostic Bruit Blanc</b>Comparaison des modèles univariés par critères d'information. L'ARIMA(0,0,1) retenant un coefficient MA(1) significatif (0.0275, p < 0.05). Validation de l'absence d'autocorrélation résiduelle par le test de Ljung-Box sur 4 lags (p=0.2876), garantissant des résidus en bruit blanc.",
+                    c3: "<b>Modèle ADL Multivarié & Algorithme GETS</b>Construction d'un modèle Autoregressive Distributed Lag avec 8 retardements sur le volume et le rendement. Utilisation de l'algorithme de réduction automatique <code>gets</code> (General-to-Specific). <b>Résultat :</b> 100% des lags de volume ont été éliminés pour non-significativité, ne conservant que Lag 1 (+0.0289) et Lag 8 (-0.0280) des rendements.",
+                    c4: "<b>Diagnostic Volatilité (Effet ARCH) & Forecast</b>Le test ARCH-LM sur les résidus révèle une forte hétéroscédasticité conditionnelle (p = 0.0003), caractéristique classique d'agglomération de volatilité (volatility clustering). Génération d'une prévision à 30 jours convergeant vers le rendement moyen.",
+                    analysis: "<b>Conclusion Économétrique & Portée Financière :</b><br>Le test de causalité au sens de Granger (p=0.2627 pour Volume --> Rendement) associé à l'élimination systématique du volume dans le modèle ADL par l'algorithme GETS démontre que <b>le volume de transactions passé n'apporte aucune valeur prédictive sur les rendements futurs de Netflix</b>. Ce résultat apporte une preuve empirique solide en faveur de l'<b>Hypothèse d'Efficience du Marché (EMH) sous sa forme faible</b> : sur des grandes valeurs très liquides, toute l'information contenue dans le volume est instantanément arbitrée et intégrée dans le prix."
+                },
+                p4: {
+                    title: "Case Study 4 : Modélisation Prédictive & Data Mining de la Réussite Scolaire",
+                    typeTag: "Projet Académique / High-Dimensional Data",
+                    objText: "<b>Objectif & Problématique :</b> Prédire la réussite ou l'échec (note du troisième examen G3 supérieure à 10/20 vs G3 inférieure à 10/20) d'élèves de l'enseignement secondaire portugais à partir de 33 variables comportementales, démographiques, sociales et académiques (Dataset UCI, 395 étudiants). Évaluation comparative de la capacité prédictive avec et sans les notes intermédiaires (G1, G2).",
+                    kpi1Lbl: "XGBoost & Random Forest (Full)",
+                    kpi2Lbl: "XGBoost (Discrimination Globale)",
+                    kpi3Val: "94.59% Spécificité",
+                    kpi3Lbl: "CART Élagué (Détection Échecs)",
+                    techSub: "Méthodologie Multi-Algorithmique & Analyse Comparative",
+                    c1: "<b>ACP & Analyse Discriminante (LDA)</b><ul class='feature-list'><li><b>ACP :</b> Résumé de la variance sur 5 composantes principales (Kaiser). PC1 (21.2% var) capture la performance académique et PC2 (13.1% var) le mode de vie (alcool, sorties).</li><li><b>LDA :</b> Séparation linéaire optimale sur le Full Model (Accuracy = 88.24%, AUC = 0.9565).</li></ul>",
+                    c2: "<b>Arbres CART Élagués (1-SE Rule)</b><ul class='feature-list'><li><b>Full Model :</b> Élagage du Maximal Tree (15 noeuds) par la règle 1-SE (cp=0.0107). L'arbre élagué se réduit à un split unique sur G2 (Accuracy = 91.60%, Spécificité = 94.59%).</li><li><b>Reduced Model :</b> Le split principal pivote exclusivement sur le nombre d'échecs passés (<code>failures</code>).</li></ul>",
+                    c3: "<b>Bootstrap (5000 itérations) & Bagging</b><ul class='feature-list'><li><b>Incertitude :</b> Ré-échantillonnage Bootstrap (5 000 répliques) pour estimer les CIs à 95% sans hypothèse de normalité.</li><li><b>Bagging Logistique (300 arbres) :</b> Régularisation de la séparation parfaite causée par G2, faisant passer l'accuracy de 84.87% à 89.08%.</li></ul>",
+                    c4: "<b>Ensembles Avancés : Random Forest & XGBoost</b><ul class='feature-list'><li><b>Random Forest :</b> 500 arbres (mtry=7 optimisé OOB), erreur OOB de 8.7% et Accuracy = 90.76% en test.</li><li><b>XGBoost :</b> Optimisation par Validation Croisée 5-fold avec arrêt précoce à 37 rounds (Accuracy = 90.76%, AUC = 0.9723).</li></ul>",
+                    analysis: "<b>Synthèse des Performances & Pourquoi ces Modèles Réussissent :</b><br>• <b>XGBoost est le meilleur classifieur global </b>(AUC = 0.9723) grâce à sa capacité d'optimisation séquentielle par gradient qui minimise l'erreur sur les marges complexes de décision.<br>• <b>CART Élagué (1-SE) offre la meilleure détection des élèves en danger</b> (94.59% de spécificité, 91.60% d'accuracy) car la règle de complexité isole parfaitement le seuil critique sur G2 sans bruit.<br>• <b>Dans le Modèle Réduit (hors notes)</b>, tous les algorithmes se réorganisent autour de l'historique d'échecs (failures, Gain/Importance 19.6), prouvant que l'historique académique prime largement sur les habitudes sociales ou socio-démographiques."
+                },
+                expSideTitle: "Sélectionner une Expérience",
+                sideExpTitles: {
+                    e1: "1. Stage Data & IA (AVISIA)",
+                    e2: "2. Trésorière (Junior-Entreprise)",
+                    e2_sub: "Gestion Financière & Budgétaire",
+                    e3: "3. Agent Logistique (Liebherr)",
+                    e3_sub: "Aéronautique / Logistique",
+                    e4: "4. Surveillante (Rectorat)",
+                    e4_sub: "Organisation CRPE"
+                },
+                e1: {
+                    title: "Stage Data Scientist & IA Agentique - AVISIA (Cabinet Conseil Data & IA, Paris)",
+                    dateTag: "Avril 2026 - Juillet 2026 (4 mois)",
+                    objText: "<b>Mission & Enjeux Industriels :</b> Conception et développement de bout en bout d'un <b>Assistant IA Agentique autonome et orchestré</b> dédié à la modernisation et à l'automatisation intégrale du cycle de migration de pipelines analytiques (fichiers SQL/SAS) vers des plateformes Data modernes (Dataiku DSS).",
+                    kpi1Val: "100% Automatisé",
+                    kpi1Lbl: "Parsing, Flow & Deploy MCP",
+                    kpi2Val: "5 Agents IA",
+                    kpi2Lbl: "Orchestration Multi-Agents",
+                    kpi3Lbl: "Validation Statistique Parité",
+                    techSub: "Architecture du Système Multi-Agents & Stack Technique",
+                    c1: "<b>System Prompts & Rôles des 5 Agents Spécialisés</b><ul class='feature-list'><li><b>Audit Agent :</b> Parsing sémantique du code source, résolution des macros imbriquées, calcul de complexité (SQL/Python) et génération du graphe de dépendances DAG (<code>audit.json</code>).</li><li><b>Translator Agent :</b> Génération du code cible (SQL/Python) selon les règles d'architecture Dataiku DSS.</li><li><b>Verifier Agent :</b> Validation syntaxique, dry-run d'exécution et boucle d'auto-correction fermée.</li><li><b>Research Agent :</b> Expertise de second niveau pour les logiques impératives complexes.</li><li><b>Report Generator Agent :</b> Synthèse Markdown & graphes Mermaid.</li></ul>",
+                    c2: "<b>Serveur Model Context Protocol (MCP) Dataiku</b>Développement d'un serveur MCP dédié encapsulant l'API Python <code>dataikuapi</code> sous forme d'outils JSON-RPC typés. Le protocole MCP offre une couche d'abstraction sécurisée permettant aux agents d'interagir directement avec Dataiku DSS (création/mise à jour de recettes, déploiement des datasets, exécution asynchrone des jobs) sans manipulation d'API bas niveau.",
+                    c3: "<b>Boucle Fermée d'Auto-Correction</b>Implémentation d'un mécanisme itératif de capture des logs d'erreurs d'exécution et des tracebacks Dataiku. En cas d'échec du job, le Verifier Agent réinjecte le contexte de l'erreur au Translator Agent pour réviser dynamiquement le code généré (jusqu'à 3 itérations) avant validation définitive.",
+                    c4: "<b>Validation Statistique 'Ground Truth' de Parité</b>Élaboration d'un protocole de validation statistique rigoureux à 3 niveaux pour garantir l'exactitude des calculs :<ol class='feature-list' style='padding-left: 20px;'><li>Validation de schéma (noms/types).</li><li>Contrôle de volumétrie (nombre de lignes).</li><li>Comparaison d'agrégats statistiques (moyenne, somme, écart-type) avec tolérance relative 1e-4 sur les tables de référence.</li></ol>",
+                    c5: "<b>Application Web Fullstack de Monitoring UX (FastAPI + HTML/JS)</b>Conception d'un dashboard interactif dédié aux chefs de projets et consultants :<ul class='feature-list'><li><b>Backend REST (FastAPI / Uvicorn) :</b> Gestion du pipeline de migration, journalisation d'événements structurés (JSON Lines) et exposition d'endpoints de contrôle.</li><li><b>Fil de Chat en Temps Réel :</b> Affichage dynamique des échanges entre agents avec accordéons dépliables pour inspecter les tracebacks et corrections.</li><li><b>Human-in-the-Loop :</b> Intégration de points de validation humaine pour approuver ou ajuster le plan d'audit avant le déploiement du Flow.</li></ul>",
+                    analysis: "<b>Apports & Compétences Clés Mobilisées :</b><br>Ce stage m'a permis de maîtriser l'état de l'art du paradigme agentique (ReAct, systèmes multi-agents, orchestration, Model Context Protocol), d'approfondir l'automatisation d'API complexes (`dataikuapi`) et d'appliquer des principes économétriques/statistiques au contrôle de parité des données en entreprise.",
+                    recTitle: "Consulter la lettre de recommandation (AVISIA)",
+                    recNote: "Document officiel original délivré par la direction d'AVISIA."
+                },
+                e2: {
+                    title: "Trésorière - Junior-Entreprise (Toulouse School of Economics)",
+                    tags: ["Gestion Financière", "Comptabilité", "Budgétisation", "Déclaratifs Fiscaux et Sociaux"],
+                    dateTag: "Mandat 2026 - 2027",
+                    list: [
+                        "Responsable intégrale du pôle Trésorerie de la structure associative.",
+                        "Management des membres de la structure avec le Bureau.",
+                        "Élaboration et suivi du budget prévisionnel annuel, gestion des trésoreries courantes et paies.",
+                        "Gestion de la comptabilité générale, émission des déclaratifs fiscaux et sociaux en conformité avec la réglementation.",
+                        "Présentation des bilans financiers lors des assemblées générales et audits."
+                    ]
+                },
+                e3: {
+                    title: "Agent Logistique - Liebherr Aerospace",
+                    tags: ["Aéronautique", "Logistique", "Rigueur Industrielle", "Travail d'Équipe"],
+                    dateTag: "Étés 2024 & 2025",
+                    list: [
+                        "Préparation de commandes et gestion de flux logistiques au sein d'un site de production aéronautique majeur.",
+                        "Respect des procédures strictes de traçabilité et des normes de sécurité de l'industrie aéronautique.",
+                        "Organisation, rigueur opérationnelle, gestion du temps et sens des priorités en environnement cadencé."
+                    ]
+                },
+                e4: {
+                    title: "Surveillante de Concours - Rectorat de Toulouse",
+                    tags: ["Secteur Public", "Organisation", "Responsabilité"],
+                    dateTag: "Étés 2022 & 2023",
+                    list: [
+                        "Aide à l'organisation et au bon déroulement des épreuves du Concours Recrutement Professeurs des Écoles (CRPE).",
+                        "Accueil des candidats, vérification des identités, respect du protocole d'examen officiel et fiabilité administrative."
+                    ]
+                },
+                interests: {
+                    i1_title: "Handball",
+                    i1_desc: "<b>10 ans de pratique</b><br>Bénévolat lors d'events et engagement au club US Aucamville Handball.",
+                    i2_title: "Natation",
+                    i2_desc: "<b>15 ans de pratique</b> <br> Entraînement régulier et participation à des compétitions internes.",
+                    i3_title: "Ouverture Internationale",
+                    i3_desc: "<b>Curiosité, flexibilité et adaptabilité</b> <br>Découverte et immersion dans différentes cultures étrangères."
+                },
+                radarLabels: [
+                    'Python', 
+                    'R (Tidymodels/Séries Temp.)', 
+                    'Économétrie & Tests', 
+                    'Machine Learning', 
+                    'IA Agentique & LLM', 
+                    'SQL & Dataiku'
+                ]
+            },
+            en: {
+                langBtn: "Version Française",
+                headerSubtitle: "Master 2 Student in Data Science for Social Sciences (International Track) • TSE",
+                headerBadge: "Seeking a 6-month end-of-studies internship in Data Science & Artificial Intelligence (starting April 2027)",
+                cvDownloadBtn: "Download Resume (PDF)",
+                cvFile: "CV_Zoe_Julliard_Bonnouvriee_EN.pdf",
+                tabs: {
+                    accueil: "Home & Overview",
+                    formation: "Education & Degrees",
+                    competences: "Skills & Tools",
+                    projets: "Data Science Projects",
+                    experiences: "Work Experience",
+                    interets: "Interests & Hobbies"
+                },
+                kpi: {
+                    k1_lbl: "Dual Bachelor Econ-Math & M1 Data Science Completed",
+                    k2_val: "Agentic AI & LLMs",
+                    k2_lbl: "AVISIA Internship • MCP & Dataiku",
+                    k3_lbl: "Computer Vision & Deep Learning"
+                },
+                aboutTitle: "About Me & Professional Goal",
+                aboutText: "I am seeking a <b>6-month end-of-studies internship in Data Science & Artificial Intelligence starting in April 2027</b>. Strongly grounded in a dual background in <b>mathematics and data science</b> developed at the <b>Toulouse School of Economics (TSE)</b>, I design high-performance algorithmic solutions applied to complex systems. Particularly drawn to data engineering and advanced modeling (<b>Agentic AI, Computer Vision, Time Series, LLMs</b>), I aim to leverage these skills for innovative projects in the industrial or banking sectors.",
+                eduTitle: "Education & Degrees",
+                edu: {
+                    e1_degree: "Master 2 Data Science for Social Sciences - International Track",
+                    e1_sub: "2026 - 2027 | Toulouse School of Economics, Toulouse Capitole University",
+                    e1_desc: "<b>M2 Track:</b> Specialization in advanced modeling, AI, deep learning, and large-scale data processing.",
+                    e2_degree: "Master 1 Data Science for Social Sciences - International Track",
+                    e2_sub: "2025 - 2026 | Toulouse School of Economics, Toulouse Capitole University | With Highest Honours",
+                    e2_desc: "<b>Coursework:</b> Python, R, Econometrics, Statistics, Machine Learning, Time Series, Finance.",
+                    e3_degree: "Academic Exchange Year",
+                    e3_sub: "2024 - 2025 | University of Oslo (Norway)",
+                    e3_desc: "<b>Coursework:</b> R, Data Science, Time Series, Econometrics, Corporate Finance.",
+                    e4_degree: "Dual Bachelor's Degree in Economics and Mathematics",
+                    e4_sub: "2021 - 2024 | Toulouse School of Economics, Toulouse Capitole University",
+                    e4_desc: "Rigorous dual-degree program in mathematical foundations, statistics, and economic theory.",
+                    e5_degree: "High School Diploma (Baccalauréat)",
+                    e5_sub: "2020 - 2021 | Lycée de Seilh",
+                    e5_desc: "With Highest Honours • Major in Mathematics & Physics-Chemistry, Advanced Mathematics Option"
+                },
+                kpiAnitiVal: "ANITI Excellence Scholarship",
+                kpiAnitiLbl: "Toulouse 3IA Institute",
+                eduAniti: "Recipient of the ANITI Excellence Scholarship (Artificial and Natural Intelligence Toulouse Institute)",
+                skillsTitle: "Technical Skills & Languages",
+                radarTitle: "Technical Expertise Radar",
+                skills: {
+                    cat1: "Programming Languages:",
+                    cat2: "AI & Machine Learning:",
+                    cat3: "Tools, MLOps & Frameworks:",
+                    cat4: "Languages:",
+                    p1: "Python (Advanced)", p2: "R (Advanced)", p3: "SQL (Intermediate)", p4: "SAS (Basics)",
+                    ml2: "Agentic AI", ml3: "Time Series (ARIMA, ADL)", ml5: "Econometrics",
+                    langFr: "<b>French:</b> Native speaker (C2)",
+                    langEn: "<b>English:</b> Fluent (C1 - TOEFL 99/120)",
+                    langEs: "<b>Spanish:</b> Basic (A2)"
+                },
+                projSideTitle: "Select a Project",
+                sideProjTitles: {
+                    p1: "1. Satellite Segmentation",
+                    p2: "2. NYC Machine Learning",
+                    p3: "3. Netflix Time Series",
+                    p4: "4. High-Dim ML & Benchmark"
+                },
+                p1: {
+                    title: "Case Study 1: Multi-Class Semantic Segmentation of Satellite Imagery (DeepGlobe)",
+                    typeTag: "Personal Project - Computer Vision",
+                    objText: "<b>Objective & Approach:</b> Build an end-to-end semantic segmentation pipeline (7 land cover classes: Urban, Agriculture, Rangeland, Forest, Water, Barren, Unknown) on the <b>DeepGlobe Land Cover</b> dataset, then <b>diagnose and mitigate</b> class imbalance and dataset size constraints through a comparative experimental approach (2 runs, metric and class-level analysis).",
+                    kpi1Lbl: "7 classes, test set (18 imgs)",
+                    kpi2Lbl: "Multi-class score",
+                    kpi3Lbl: "Gain after 20→120 images scaling",
+                    techSub: "Technical Architecture & Data-Centric Approach",
+                    c1: "<b>Data Pipeline & Patchification</b>Cropping DeepGlobe tiles into 256 x 256 pixel patches via a custom PyTorch <code>Dataset</code> with ImageNet normalization. Dataset splitting performed at full-image level (84 train / 18 val / 18 test) to eliminate data leakage between patches from the same tile.",
+                    c2: "<b>U-Net Architecture & ResNet34 Transfer Learning</b>U-Net architecture (encoder-decoder with skip connections) using <code>segmentation_models_pytorch</code>, featuring an ImageNet <b>pre-trained ResNet34 backbone</b> to extract edge and texture features from early epochs.",
+                    c3: "<b>Hybrid Multi-Class Loss (50% Cross-Entropy + 50% Dice)</b>To address extreme imbalance (Agriculture = 57.7% of pixels, Water = 0.9%, Unknown = 0.06%), implemented a combined <code>MultiClassDiceLoss</code> and Cross-Entropy loss to balance pixel-level classification and region overlap quality for rare classes.",
+                    c4: "<b>Data-Centric Diagnostics: Dataset Size vs Performance</b>Controlled comparison of two runs (20 vs 120 images, 3 vs 5 epochs) with confusion matrix and per-class IoU analysis:<ul style='margin: 8px 0 0 16px; padding: 0; line-height: 1.6;'><li><b style='display:inline; color:inherit; font-size:inherit;'>Agriculture</b> (majority class, 57.7% pixels): IoU 0.73, 92% correctly classified in Run 1.</li><li><b style='display:inline; color:inherit; font-size:inherit;'>Urban / Water</b> (minority classes): IoU increased from 0.00 to 0.61 / 0.67 thanks to dataset scaling (20 → 120 images).</li><li><b style='display:inline; color:inherit; font-size:inherit;'>Rangeland</b>: IoU 0.25, 49% misclassified as Agriculture - inherent semantic confusion unresolved by dataset size alone.</li></ul>",
+                    analysis: "<b>Discussion & Results Interpretation:</b><br>Scaling training data from 20 to 120 images boosted <b>Mean IoU from 22.7% to 51.0%</b>, with minority classes (Urban, Water) rising from an IoU of <b>0.00 to 0.61 and 0.67 respectively</b> - proving that dataset size, not model architecture, was the initial bottleneck. Remarkably, <b>Pixel Accuracy slightly dropped</b> (80.4% → 77.2%) while true segmentation quality improved drastically, as the model stopped predicting the majority class (Agriculture) by default. Only <b>Rangeland</b> remains challenging (IoU 0.25, 49% confusion with Agriculture): an intrinsic visual and semantic overlap not solved by scale alone."
+                },
+                p2: {
+                    title: "Case Study 2: Predictive Modeling & ML Benchmark of NYC Real Estate Prices",
+                    typeTag: "Academic Project / Machine Learning",
+                    objText: "<b>Objective & Scope:</b> Predict sales prices for single-family homes (Class A) across New York's 5 boroughs (Bronx, Brooklyn, Manhattan, Queens, Staten Island) using the official 'Rolling Sales' dataset from the NYC Department of Finance (72,538 raw records).",
+                    kpi1Lbl: "Random Forest (Out-of-Sample Winner)",
+                    kpi2Lbl: "Linear Regression Baseline",
+                    kpi3Lbl: "XGBoost (Overfitting Detected)",
+                    techSub: "Econometric Workflow & Tidymodels Benchmark",
+                    c1: "<b>Data Cleaning & Extreme Outlier Filtering</b>Handled missing values, removed intra-family sales (< $10,000) and zero square footage records. Filtered extreme outliers distorting regressions (e.g., removed an isolated $72.5M Manhattan transaction, $38.25M above the second highest). Final cleaned sample: 8,858 transactions (Class A).",
+                    c2: "<b>Econometric Analysis by Borough (Broom & Purrr)</b>Utilized <code>nest()</code>, <code>map()</code>, and <code>unnest()</code> functions to run parallel linear regressions per borough. Empirical estimation of m² values: +$319/m² in Staten Island (R²=53%, p < 2e-16), +$1,003/m² in Brooklyn, and up to +$2,450/m² in Manhattan.",
+                    c3: "<b>Tidymodels Recipe & Preprocessing</b>Strict dataset split: 80% Training Set (7,083 obs) / 20% Testing Set (1,771 obs). Configured preprocessing recipe with dummy encoding (<code>step_dummy</code>), imputation, and geographic predictor normalization.",
+                    c4: "<b>Out-of-Sample ML Benchmark</b>Cross-trained 3 architectures: Linear Regression baseline, Random Forest (Ranger, 500 trees), and XGBoost (eta=0.1, max_depth=6). Unified out-of-sample generalization assessment on unseen test data using RMSE.",
+                    analysis: "<b>Econometric Discussion & Interpretation of Results:</b><br>The benchmark demonstrates that <b>Random Forest achieves superior out-of-sample generalization</b> (RMSE = $1,258,549) due to bagging principles reducing variance in a highly dispersed market. Conversely, <b>XGBoost performed worst</b> (RMSE = $1,362,894): the boosting algorithm overfit the noise in the training set caused by the extreme price variance of NYC luxury real estate."
+                },
+                p3: {
+                    title: "Case Study 3: Time Series Analysis & Market Efficiency Test (Netflix)",
+                    typeTag: "Academic Project / Econometrics",
+                    objText: "<b>Financial Problem Statement: Does past daily trading volume contain predictive power for future Netflix stock returns?</b><br>Rigorous econometric analysis on 23 years of historical data (2002-2025, 5,742 daily observations).",
+                    kpi1Lbl: "Best Univariate Model (AIC: -22139)",
+                    kpi2Lbl: "Granger Test (Volume Non-Causality)",
+                    kpi3Val: "EMH Validated",
+                    kpi3Lbl: "Weak-Form Efficient Market",
+                    techSub: "Econometric Approach & Robustness Diagnostics",
+                    c1: "<b>Stationarity Testing (ADF vs KPSS) & Log-Returns</b>Identified non-stationarity in raw closing prices (ADF p=0.975, KPSS p=0.01). Applied first logarithmic differencing to derive strictly stationary daily log-returns (p=0.01 in ADF tests on differenced series).",
+                    c2: "<b>ARIMA Modeling & White Noise Diagnostics</b>Evaluated univariate models via information criteria. Selected ARIMA(0,0,1) with a significant MA(1) coefficient (0.0275, p < 0.05). Confirmed absence of residual autocorrelation using Ljung-Box test over 4 lags (p=0.2876), ensuring white noise residuals.",
+                    c3: "<b>Multivariate ADL Model & GETS Algorithm</b>Constructed an Autoregressive Distributed Lag model with 8 lags on volume and return. Employed <code>gets</code> (General-to-Specific) automated reduction algorithm. <b>Result:</b> 100% of volume lags were eliminated for non-significance, retaining only Return Lag 1 (+0.0289) and Lag 8 (-0.0280).",
+                    c4: "<b>Volatility Diagnostics (ARCH Effect) & Forecast</b>ARCH-LM test on residuals revealed strong conditional heteroskedasticity (p = 0.0003), a classic sign of volatility clustering. Generated a 30-day forecast converging toward mean returns.",
+                    analysis: "<b>Econometric Conclusion & Financial Takeaways:</b><br>Granger causality test (p=0.2627 for Volume --> Return) alongside the systematic elimination of volume in the ADL model via GETS proves that <b>past trading volume carries no predictive value for future Netflix returns</b>. This result provides solid empirical support for the <b>Weak-Form Efficient Market Hypothesis (EMH)</b>: in large, highly liquid equities, volume information is instantly arbitrated and reflected in price."
+                },
+                p4: {
+                    title: "Case Study 4: Predictive Modeling & Data Mining of Student Success",
+                    typeTag: "Academic Project / High-Dimensional Data",
+                    objText: "<b>Objective & Problem Statement:</b> Predict final exam pass/fail status (third exam grade G3 >= 10/20 vs G3 < 10/20) for Portuguese secondary school students using 33 behavioral, demographic, social, and academic variables (UCI Dataset, 395 students). Comparative evaluation of predictive power with and without intermediate grades (G1, G2).",
+                    kpi1Lbl: "XGBoost & Random Forest (Full)",
+                    kpi2Lbl: "XGBoost (Global Discrimination)",
+                    kpi3Val: "94.59% Specificity",
+                    kpi3Lbl: "Pruned CART (Failure Detection)",
+                    techSub: "Multi-Algorithmic Methodology & Comparative Analysis",
+                    c1: "<b>PCA & Linear Discriminant Analysis (LDA)</b><ul class='feature-list'><li><b>PCA:</b> Summarized variance across 5 principal components (Kaiser criterion). PC1 (21.2% var) captures academic performance; PC2 (13.1% var) reflects lifestyle choices.</li><li><b>LDA:</b> Optimal linear separation on the Full Model (Accuracy = 88.24%, AUC = 0.9565).</li></ul>",
+                    c2: "<b>Pruned CART Decision Trees (1-SE Rule)</b><ul class='feature-list'><li><b>Full Model:</b> Pruned maximal tree (15 nodes) using 1-SE rule (cp=0.0107), resulting in a single-split tree on G2 (Accuracy = 91.60%, Specificity = 94.59%).</li><li><b>Reduced Model:</b> Primary split pivots exclusively on past academic failures (<code>failures</code>).</li></ul>",
+                    c3: "<b>Bootstrap (5,000 iterations) & Bagging</b><ul class='feature-list'><li><b>Uncertainty:</b> Bootstrap resampling (5,000 replicas) to estimate 95% CIs without normality assumptions.</li><li><b>Logistic Bagging (300 trees):</b> Regularized perfect separation caused by G2, boosting accuracy from 84.87% to 89.08%.</li></ul>",
+                    c4: "<b>Advanced Ensembles: Random Forest & XGBoost</b><ul class='feature-list'><li><b>Random Forest:</b> 500 trees (OOB optimized mtry=7), 8.7% OOB error, and 90.76% test accuracy.</li><li><b>XGBoost:</b> 5-fold cross-validation tuning with early stopping at 37 rounds (Accuracy = 90.76%, AUC = 0.9723).</li></ul>",
+                    analysis: "<b>Performance Synthesis & Insights:</b><br>• <b>XGBoost is the top global classifier</b> (AUC = 0.9723) due to sequential gradient optimization minimizing error on complex decision margins.<br>• <b>Pruned CART (1-SE) excels at identifying at-risk students</b> (94.59% specificity, 91.60% accuracy) as complexity tuning isolates the critical G2 threshold cleanly.<br>• <b>In the Reduced Model (excluding prior grades)</b>, all algorithms re-center on past academic failures (failures, Gain/Importance 19.6), proving academic history far outweighs demographic or social factors."
+                },
+                expSideTitle: "Select Experience",
+                sideExpTitles: {
+                    e1: "1. Data & AI Intern (AVISIA)",
+                    e2: "2. Head of Treasury (Junior-Enterprise)",
+                    e2_sub: "Financial & Budget Management",
+                    e3: "3. Logistics Agent (Liebherr)",
+                    e3_sub: "Aerospace / Logistics",
+                    e4: "4. Exam Supervisor (Rectorat)",
+                    e4_sub: "CRPE Exam Organization"
+                },
+                e1: {
+                    title: "Data Scientist & Agentic AI Intern - AVISIA (Data & AI Consulting Firm, Paris)",
+                    dateTag: "April 2026 - July 2026 (4 months)",
+                    objText: "<b>Mission & Scope:</b> End-to-end design and engineering of an <b>autonomous, orchestrated Agentic AI Assistant</b> to modernize and automate legacy analytics code migrations (SQL/SAS) into modern Data platforms (Dataiku DSS).",
+                    kpi1Val: "100% Automated",
+                    kpi1Lbl: "Parsing, Flow & Deploy MCP",
+                    kpi2Val: "5 AI Agents",
+                    kpi2Lbl: "Multi-Agent Orchestration",
+                    kpi3Lbl: "Ground Truth Statistical Validation",
+                    techSub: "Multi-Agent System Architecture & Tech Stack",
+                    c1: "<b>System Prompts & Roles of 5 Specialized Agents</b><ul class='feature-list'><li><b>Audit Agent:</b> Semantic parsing of source code, nested macro resolution, complexity scoring (SQL/Python), and DAG dependency graph generation (<code>audit.json</code>).</li><li><b>Translator Agent:</b> Target code generation (SQL/Python) abiding by Dataiku DSS architectural rules.</li><li><b>Verifier Agent:</b> Syntax validation, dry-run execution, and closed-loop self-correction.</li><li><b>Research Agent:</b> Expert-level analysis for complex imperative logic.</li><li><b>Report Generator Agent:</b> Markdown summaries & Mermaid DAG diagrams.</li></ul>",
+                    c2: "<b>Dataiku Model Context Protocol (MCP) Server</b>Built a custom MCP server wrapping the <code>dataikuapi</code> Python SDK into typed JSON-RPC tools. MCP provides a secure abstraction layer allowing agents to directly interact with Dataiku DSS (creating/updating recipes, deploying datasets, triggering async jobs) without low-level API mechanics.",
+                    c3: "<b>Closed-Loop Self-Correction Loop</b>Engineered an iterative mechanism capturing Dataiku execution error logs and tracebacks. Upon job failure, the Verifier Agent feeds error context back to the Translator Agent to dynamically revise generated code (up to 3 iterations) before final validation.",
+                    c4: "<b>Ground Truth Statistical Parity Validation</b>Designed a rigorous 3-level statistical verification framework to ensure mathematical exactness:<ol class='feature-list' style='padding-left: 20px;'><li>Schema validation (names/types).</li><li>Volumetrics check (row counts).</li><li>Statistical aggregate comparison (mean, sum, std dev) with a 1e-4 relative tolerance threshold on reference tables.</li></ol>",
+                    c5: "<b>Fullstack UX Monitoring Web App (FastAPI + HTML/JS)</b>Designed an interactive dashboard for project leads and consultants:<ul class='feature-list'><li><b>REST Backend (FastAPI / Uvicorn):</b> Migration pipeline management, structured event logging (JSON Lines), and control endpoints.</li><li><b>Real-Time Chat Feed:</b> Dynamic display of agent interactions with expandable accordions for inspecting tracebacks and fixes.</li><li><b>Human-in-the-Loop:</b> Checkpoints for human approval to review or tweak audit plans prior to Flow deployment.</li></ul>",
+                    analysis: "<b>Key Takeaways & Mastered Skills:</b><br>Mastered cutting-edge agentic engineering (ReAct, multi-agent orchestration, Model Context Protocol), deep API automation (`dataikuapi`), and applied econometric/statistical principles to enterprise data parity verification.",
+                    recTitle: "View Recommendation Letter (AVISIA)",
+                    recNote: "The recommendation letter is in its original French version. Switch back to the French view to consult the full original context if needed."
+                },
+                e2: {
+                    title: "Head of Treasury - Junior-Enterprise (Toulouse School of Economics)",
+                    tags: ["Financial Management", "Accounting", "Budgeting", "Tax & Social Declarations"],
+                    dateTag: "Term 2026 - 2027",
+                    list: [
+                        "Full responsibility for the Treasury department of the student consulting firm.",
+                        "Team leadership alongside Executive Board members.",
+                        "Annual budget planning, cash flow management, and payroll execution.",
+                        "General accounting management, tax, and social security compliance submissions.",
+                        "Financial reporting during general assemblies and external audits."
+                    ]
+                },
+                e3: {
+                    title: "Logistics Agent - Liebherr Aerospace",
+                    tags: ["Aerospace", "Logistics", "Industrial Rigor", "Teamwork"],
+                    dateTag: "Summers 2024 & 2025",
+                    list: [
+                        "Order fulfillment and supply chain management within a major aerospace manufacturing facility.",
+                        "Strict adherence to industrial traceability protocols and aerospace safety standards.",
+                        "Organizational rigor, time management, and task prioritization in a fast-paced environment."
+                    ]
+                },
+                e4: {
+                    title: "Exam Supervisor - Rectorat de Toulouse",
+                    tags: ["Public Sector", "Organization", "Responsibility"],
+                    dateTag: "Summers 2022 & 2023",
+                    list: [
+                        "Assisted in coordinating state primary school teacher recruitment exams (CRPE).",
+                        "Candidate onboarding, identity checks, official examination protocol compliance, and administrative reporting."
+                    ]
+                },
+                interests: {
+                    i1_title: "Handball",
+                    i1_desc: "<b>10 years of practice</b><br>Event volunteering and engagement with US Aucamville Handball club.",
+                    i2_title: "Swimming",
+                    i2_desc: "<b>15 years of practice</b> <br> Regular training and participation in internal competitions.",
+                    i3_title: "International Mindset",
+                    i3_desc: "<b>Curiosity, flexibility, and adaptability</b> <br>Exploration and immersion in diverse foreign cultures."
+                },
+                radarLabels: [
+                    'Python', 
+                    'R (Tidymodels/Time Series)', 
+                    'Econometrics & Tests', 
+                    'Machine Learning', 
+                    'Agentic AI & LLMs', 
+                    'SQL & Dataiku'
+                ]
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const t = i18n[lang];
+
+            document.documentElement.lang = lang;
+            document.getElementById('lang-btn-text').innerText = t.langBtn;
+            document.getElementById('header-subtitle').innerText = t.headerSubtitle;
+            document.getElementById('header-badge').innerText = t.headerBadge;
+            document.getElementById('cv-download-btn').innerText = t.cvDownloadBtn;
+            document.getElementById('cv-download-link').href = t.cvFile;
+
+            // Tabs
+            document.getElementById('tab-btn-accueil').innerText = t.tabs.accueil;
+            document.getElementById('tab-btn-formation').innerText = t.tabs.formation;
+            document.getElementById('tab-btn-competences').innerText = t.tabs.competences;
+            document.getElementById('tab-btn-projets').innerText = t.tabs.projets;
+            document.getElementById('tab-btn-experiences').innerText = t.tabs.experiences;
+            document.getElementById('tab-btn-interets').innerText = t.tabs.interets;
+
+            // Tab 1: Accueil
+            document.getElementById('kpi1-lbl').innerText = t.kpi.k1_lbl;
+            document.getElementById('kpi2-val').innerText = t.kpi.k2_val;
+            document.getElementById('kpi2-lbl').innerText = t.kpi.k2_lbl;
+            document.getElementById('kpi3-lbl').innerText = t.kpi.k3_lbl;
+            document.getElementById('about-title').innerText = t.aboutTitle;
+            document.getElementById('about-text').innerHTML = t.aboutText;
+
+            // Tab 2: Education
+            document.getElementById('edu-title').innerText = t.eduTitle;
+            document.getElementById('edu1-degree').innerText = t.edu.e1_degree;
+            document.getElementById('edu1-sub').innerText = t.edu.e1_sub;
+            document.getElementById('edu1-desc').innerHTML = t.edu.e1_desc;
+            if (document.getElementById('kpi-aniti-val')) {
+                document.getElementById('kpi-aniti-val').innerText = t.kpiAnitiVal;
+                document.getElementById('kpi-aniti-lbl').innerText = t.kpiAnitiLbl;
+            }
+            if (document.getElementById('edu-aniti')) {
+                document.getElementById('edu-aniti').innerHTML = t.eduAniti;
+            }
+
+            document.getElementById('edu2-degree').innerText = t.edu.e2_degree;
+            document.getElementById('edu2-sub').innerText = t.edu.e2_sub;
+            document.getElementById('edu2-desc').innerHTML = t.edu.e2_desc;
+
+            document.getElementById('edu3-degree').innerText = t.edu.e3_degree;
+            document.getElementById('edu3-sub').innerText = t.edu.e3_sub;
+            document.getElementById('edu3-desc').innerHTML = t.edu.e3_desc;
+
+            document.getElementById('edu4-degree').innerText = t.edu.e4_degree;
+            document.getElementById('edu4-sub').innerText = t.edu.e4_sub;
+            document.getElementById('edu4-desc').innerHTML = t.edu.e4_desc;
+
+            document.getElementById('edu5-degree').innerText = t.edu.e5_degree;
+            document.getElementById('edu5-sub').innerText = t.edu.e5_sub;
+            document.getElementById('edu5-desc').innerHTML = t.edu.e5_desc;
+
+            // Tab 3: Skills
+            document.getElementById('skills-title').innerText = t.skillsTitle;
+            document.getElementById('radar-title').innerText = t.radarTitle;
+            document.getElementById('skills-cat1').innerText = t.skills.cat1;
+            document.getElementById('skills-cat2').innerText = t.skills.cat2;
+            document.getElementById('skills-cat3').innerText = t.skills.cat3;
+            document.getElementById('skills-cat4').innerText = t.skills.cat4;
+
+            document.getElementById('tag-p1').innerText = t.skills.p1;
+            document.getElementById('tag-p2').innerText = t.skills.p2;
+            document.getElementById('tag-p3').innerText = t.skills.p3;
+            document.getElementById('tag-p4').innerText = t.skills.p4;
+            document.getElementById('tag-ml2').innerText = t.skills.ml2;
+            document.getElementById('tag-ml3').innerText = t.skills.ml3;
+            document.getElementById('tag-ml5').innerText = t.skills.ml5;
+
+            document.getElementById('lang-fr').innerHTML = t.skills.langFr;
+            document.getElementById('lang-en').innerHTML = t.skills.langEn;
+            document.getElementById('lang-es').innerHTML = t.skills.langEs;
+
+            // Tab 4: Projects
+            document.getElementById('proj-side-title').innerText = t.projSideTitle;
+            document.getElementById('side-p1-title').innerText = t.sideProjTitles.p1;
+            document.getElementById('side-p2-title').innerText = t.sideProjTitles.p2;
+            document.getElementById('side-p3-title').innerText = t.sideProjTitles.p3;
+            document.getElementById('side-p4-title').innerText = t.sideProjTitles.p4;
+
+            // P1
+            document.getElementById('p1-main-title').innerText = t.p1.title;
+            document.getElementById('p1-type-tag').innerText = t.p1.typeTag;
+            document.getElementById('p1-obj-text').innerHTML = t.p1.objText;
+            document.getElementById('p1-kpi1-lbl').innerText = t.p1.kpi1Lbl;
+            document.getElementById('p1-kpi2-lbl').innerText = t.p1.kpi2Lbl;
+            document.getElementById('p1-kpi3-lbl').innerText = t.p1.kpi3Lbl;
+            document.getElementById('p1-tech-subtitle').innerText = t.p1.techSub;
+            document.getElementById('p1-card1').innerHTML = t.p1.c1;
+            document.getElementById('p1-card2').innerHTML = t.p1.c2;
+            document.getElementById('p1-card3').innerHTML = t.p1.c3;
+            document.getElementById('p1-card4').innerHTML = t.p1.c4;
+            document.getElementById('p1-analysis-block').innerHTML = t.p1.analysis;
+
+            // P2
+            document.getElementById('p2-main-title').innerText = t.p2.title;
+            document.getElementById('p2-type-tag').innerText = t.p2.typeTag;
+            document.getElementById('p2-obj-text').innerHTML = t.p2.objText;
+            document.getElementById('p2-kpi1-lbl').innerText = t.p2.kpi1Lbl;
+            document.getElementById('p2-kpi2-lbl').innerText = t.p2.kpi2Lbl;
+            document.getElementById('p2-kpi3-lbl').innerText = t.p2.kpi3Lbl;
+            document.getElementById('p2-tech-subtitle').innerText = t.p2.techSub;
+            document.getElementById('p2-card1').innerHTML = t.p2.c1;
+            document.getElementById('p2-card2').innerHTML = t.p2.c2;
+            document.getElementById('p2-card3').innerHTML = t.p2.c3;
+            document.getElementById('p2-card4').innerHTML = t.p2.c4;
+            document.getElementById('p2-analysis-block').innerHTML = t.p2.analysis;
+
+            // P3
+            document.getElementById('p3-main-title').innerText = t.p3.title;
+            document.getElementById('p3-type-tag').innerText = t.p3.typeTag;
+            document.getElementById('p3-obj-text').innerHTML = t.p3.objText;
+            document.getElementById('p3-kpi1-lbl').innerText = t.p3.kpi1Lbl;
+            document.getElementById('p3-kpi2-lbl').innerText = t.p3.kpi2Lbl;
+            document.getElementById('p3-kpi3-val').innerText = t.p3.kpi3Val;
+            document.getElementById('p3-kpi3-lbl').innerText = t.p3.kpi3Lbl;
+            document.getElementById('p3-tech-subtitle').innerText = t.p3.techSub;
+            document.getElementById('p3-card1').innerHTML = t.p3.c1;
+            document.getElementById('p3-card2').innerHTML = t.p3.c2;
+            document.getElementById('p3-card3').innerHTML = t.p3.c3;
+            document.getElementById('p3-card4').innerHTML = t.p3.c4;
+            document.getElementById('p3-analysis-block').innerHTML = t.p3.analysis;
+
+            // P4
+            document.getElementById('p4-main-title').innerText = t.p4.title;
+            document.getElementById('p4-type-tag').innerText = t.p4.typeTag;
+            document.getElementById('p4-obj-text').innerHTML = t.p4.objText;
+            document.getElementById('p4-kpi1-lbl').innerText = t.p4.kpi1Lbl;
+            document.getElementById('p4-kpi2-lbl').innerText = t.p4.kpi2Lbl;
+            document.getElementById('p4-kpi3-val').innerText = t.p4.kpi3Val;
+            document.getElementById('p4-kpi3-lbl').innerText = t.p4.kpi3Lbl;
+            document.getElementById('p4-tech-subtitle').innerText = t.p4.techSub;
+            document.getElementById('p4-card1').innerHTML = t.p4.c1;
+            document.getElementById('p4-card2').innerHTML = t.p4.c2;
+            document.getElementById('p4-card3').innerHTML = t.p4.c3;
+            document.getElementById('p4-card4').innerHTML = t.p4.c4;
+            document.getElementById('p4-analysis-block').innerHTML = t.p4.analysis;
+
+            // Tab 5: Experiences
+            document.getElementById('exp-side-title').innerText = t.expSideTitle;
+            document.getElementById('side-e1-title').innerText = t.sideExpTitles.e1;
+            document.getElementById('side-e2-title').innerText = t.sideExpTitles.e2;
+            document.getElementById('side-e2-sub').innerText = t.sideExpTitles.e2_sub;
+            document.getElementById('side-e3-title').innerText = t.sideExpTitles.e3;
+            document.getElementById('side-e3-sub').innerText = t.sideExpTitles.e3_sub;
+            document.getElementById('side-e4-title').innerText = t.sideExpTitles.e4;
+            document.getElementById('side-e4-sub').innerText = t.sideExpTitles.e4_sub;
+
+            // E1
+            document.getElementById('e1-main-title').innerText = t.e1.title;
+            document.getElementById('e1-date-tag').innerText = t.e1.dateTag;
+            document.getElementById('e1-obj-text').innerHTML = t.e1.objText;
+            document.getElementById('e1-kpi1-val').innerText = t.e1.kpi1Val;
+            document.getElementById('e1-kpi1-lbl').innerText = t.e1.kpi1Lbl;
+            document.getElementById('e1-kpi2-val').innerText = t.e1.kpi2Val;
+            document.getElementById('e1-kpi2-lbl').innerText = t.e1.kpi2Lbl;
+            document.getElementById('e1-kpi3-lbl').innerText = t.e1.kpi3Lbl;
+            document.getElementById('e1-tech-subtitle').innerText = t.e1.techSub;
+            document.getElementById('e1-card1').innerHTML = t.e1.c1;
+            document.getElementById('e1-card2').innerHTML = t.e1.c2;
+            document.getElementById('e1-card3').innerHTML = t.e1.c3;
+            document.getElementById('e1-card4').innerHTML = t.e1.c4;
+            document.getElementById('e1-card5').innerHTML = t.e1.c5;
+            document.getElementById('e1-analysis-block').innerHTML = t.e1.analysis;
+            document.getElementById('e1-rec-title').innerText = t.e1.recTitle;
+            document.getElementById('e1-rec-note').innerText = t.e1.recNote;
+
+            // E2
+            document.getElementById('e2-main-title').innerText = t.e2.title;
+            document.getElementById('e2-date-tag').innerText = t.e2.dateTag;
+            document.getElementById('e2-tag1').innerText = t.e2.tags[0];
+            document.getElementById('e2-tag2').innerText = t.e2.tags[1];
+            document.getElementById('e2-tag3').innerText = t.e2.tags[2];
+            document.getElementById('e2-tag4').innerText = t.e2.tags[3];
+            document.getElementById('e2-list').innerHTML = t.e2.list.map(item => `<li>${item}</li>`).join('');
+
+            // E3
+            document.getElementById('e3-main-title').innerText = t.e3.title;
+            document.getElementById('e3-date-tag').innerText = t.e3.dateTag;
+            document.getElementById('e3-tag1').innerText = t.e3.tags[0];
+            document.getElementById('e3-tag2').innerText = t.e3.tags[1];
+            document.getElementById('e3-tag3').innerText = t.e3.tags[2];
+            document.getElementById('e3-tag4').innerText = t.e3.tags[3];
+            document.getElementById('e3-list').innerHTML = t.e3.list.map(item => `<li>${item}</li>`).join('');
+
+            // E4
+            document.getElementById('e4-main-title').innerText = t.e4.title;
+            document.getElementById('e4-date-tag').innerText = t.e4.dateTag;
+            document.getElementById('e4-tag1').innerText = t.e4.tags[0];
+            document.getElementById('e4-tag2').innerText = t.e4.tags[1];
+            document.getElementById('e4-tag3').innerText = t.e4.tags[2];
+            document.getElementById('e4-list').innerHTML = t.e4.list.map(item => `<li>${item}</li>`).join('');
+
+            // Tab 6: Interests
+            document.getElementById('interest1-title').innerText = t.interests.i1_title;
+            document.getElementById('interest1-desc').innerHTML = t.interests.i1_desc;
+            document.getElementById('interest2-title').innerText = t.interests.i2_title;
+            document.getElementById('interest2-desc').innerHTML = t.interests.i2_desc;
+            document.getElementById('interest3-title').innerText = t.interests.i3_title;
+            document.getElementById('interest3-desc').innerHTML = t.interests.i3_desc;
+
+            // Radar Chart Update
+            skillsChart.data.labels = t.radarLabels;
+            skillsChart.update();
+        }
+
+        function toggleLanguage() {
+            setLanguage(currentLang === 'fr' ? 'en' : 'fr');
+        }
+
         // NAVIGATION PRINCIPALE ONGLET DU CV
         function switchTab(tabId, btnElement) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
@@ -1073,51 +1732,15 @@
             btnElement.classList.add('active');
         }
 
-        // SIMULATEUR INTERACTIF DEMO SATELLITE
-        function setDemo(type, btn) {
-            document.querySelectorAll('.demo-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const out = document.getElementById('demo-output');
-            let details = "";
-            
-            switch(type) {
-                case 'urbain':
-                    details = "<b>Input :</b> Patches GeoTIFF 256x256 (Rasterio Windows)<br>" +
-                            "<b>Architecture :</b> U-Net (Backbone ResNet34 pré-entraîné ImageNet)<br>" +
-                            "<b>Fonction de perte :</b> Combo Loss (50% BCE + 50% Dice Loss)<br>" +
-                            "<b>Évaluation :</b> Calcul de l'IoU et Dice Score sur masque binaire.";
-                    break;
-                case 'aero':
-                    details = "<b>Input :</b> Zone Industrielle / Emprises Aéronautiques<br>" +
-                            "<b>Optimisation :</b> Chargement dynamique de fenêtres d'images sans surcharge RAM GPU<br>" +
-                            "<b>Inférence :</b> Classification pixel par pixel (Urbain vs Non-Urbain).";
-                    break;
-                case 'mixte':
-                    details = "<b>Input :</b> Zones Périurbaines & Couvert Végétal<br>" +
-                            "<b>Résolution du déséquilibre :</b> La Dice Loss pénalise la mauvaise détection des faibles surfaces urbaines.<br>" +
-                            "<b>Résultat :</b> Masques de segmentation extraits avec succès.";
-                    break;
-            }
-            out.innerHTML = details;
-        }
-
         // CHART RADAR DES COMPÉTENCES (GRAPH UNIFIÉ EN BLEU)
         const ctx = document.getElementById('skillsRadar').getContext('2d');
-        new Chart(ctx, {
+        const skillsChart = new Chart(ctx, {
             type: 'radar',
             data: {
-                labels: [
-                    'Python', 
-                    'R (Tidymodels/Séries Temp.)', 
-                    'Économétrie & Tests', 
-                    'Machine Learning', 
-                    'IA Agentique & LLM', 
-                    'SQL & Dataiku'
-                ],
+                labels: i18n.fr.radarLabels,
                 datasets: [{
                     label: 'Niveau d\'expertise',
-                    data: [80, 70, 65, 65, 70, 50],
+                    data: [85, 75, 70, 70, 75, 55],
                     backgroundColor: 'rgba(56, 189, 248, 0.2)',
                     borderColor: '#0284C7',
                     borderWidth: 2,
@@ -1129,8 +1752,8 @@
                 maintainAspectRatio: false,
                 scales: {
                     r: {
-                        min: 0,   // <-- Force le centre exact à 0
-                        max: 100, // <-- Force le bord externe exact à 100
+                        min: 0,   // Force le centre exact à 0
+                        max: 100, // Force le bord externe exact à 100
                         beginAtZero: true,
                         angleLines: { color: '#E2E8F0' },
                         grid: { color: '#F1F5F9' },
