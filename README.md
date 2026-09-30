@@ -30,7 +30,7 @@ Ce site web dynamique met en valeur mes compétences techniques, mes projets aca
 ```text
 ├── index.html                           # Page principale (HTML / JS bilingue)
 ├── photo.jpg                            # Photo de profil
-├── CV_Zoe_Julliard_Bonnouvriee_M2.pdf   # CV au format PDF (Français)
+├── CV_Zoe_Julliard_Bonnouvriee_FR.pdf   # CV au format PDF (Français)
 ├── CV_Zoe_Julliard_Bonnouvriee_EN.pdf   # CV au format PDF (Anglais)
 ├── Lettre_de_recommandation_AVISIA.pdf # Lettre de recommandation (PDF)
 └── README.md                            # Documentation du projet
